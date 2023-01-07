@@ -55,7 +55,7 @@ resource "aws_instance" "app_server" {
   ami            = "ami-084e8c05825742534"
   instance_type  = "t2.micro"
   key_name       = "catalyst2"
-  security_gorup = "ec2_sg"
+  security_group = "ec2_sg"
 
   tags = {
     Name = "ExampleAppServerInstance"
