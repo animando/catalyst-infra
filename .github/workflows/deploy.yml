@@ -21,8 +21,6 @@ jobs:
 
       - name: terraform plan
         uses: dflook/terraform-plan@v1
-        with:
-          path: main.tf
       # - run: terraform init
       # - run: terraform fmt
       # - run: terraform validate
