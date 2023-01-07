@@ -1,6 +1,8 @@
 name: deploy
 run-name: ${{ github.actor }} is deploying
 on: [push]
+env:
+  ECR_PASSWORD: ${{ secrets.ECR_PASSWORD }}
 jobs:
   deploy-infra:
     runs-on: ubuntu-latest
@@ -11,7 +13,7 @@ jobs:
       image: 726059925999.dkr.ecr.eu-west-2.amazonaws.com/catalyst-images:latest
       credentials:
         username: AWS
-        password: ${{ secrets.ECR_PASSWORD }}
+        password: ${{ env.ECR_PASSWORD }}
     steps:
       - run: echo "inside an ecr container"
       # - uses: actions/checkout@v3
