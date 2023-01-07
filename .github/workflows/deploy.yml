@@ -1,15 +1,7 @@
 name: deploy
 run-name: ${{ github.actor }} is deploying
 on: [push]
-env:
-  ECR_PASSWORD: ${{ secrets.ECR_PASSWORD }}
-  SAFE_SECRET: ${{ secrets.SAFE_SECRET }}
 jobs:
-  debug:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo ${{ env.SAFE_SECRET }}
-      - run: echo ${{ secrets.SAFE_SECRET }}
   deploy-infra:
     runs-on: ubuntu-latest
     permissions:
@@ -19,9 +11,10 @@ jobs:
       image: 726059925999.dkr.ecr.eu-west-2.amazonaws.com/catalyst-images:latest
       credentials:
         username: AWS
-        password: ${{ env.ECR_PASSWORD }}
+        password: ${{ secrets.ECR_PASSWORD }}
     steps:
       - run: echo "inside an ecr container"
+      - run: ls -l /root/iamhere
       # - uses: actions/checkout@v3
       # - uses: actions/setup-node@v3
       #   with:
