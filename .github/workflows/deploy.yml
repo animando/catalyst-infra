@@ -21,6 +21,11 @@ jobs:
 
       - name: terraform plan
         uses: dflook/terraform-plan@v1
+
+      - name: terraform apply
+        uses: dflook/terraform-apply@v1
+        with:
+          auto_approve: true
       # - run: terraform init
       # - run: terraform fmt
       # - run: terraform validate
