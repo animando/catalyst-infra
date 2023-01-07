@@ -10,6 +10,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_ROLE_ARN: arn:aws:iam::726059925999:role/github-role
+      TF_HTTP_PASSWORD: ${{ secrets.TF_HTTP_PASSWORD }}
     # container:
     #   image: 726059925999.dkr.ecr.eu-west-2.amazonaws.com/catalyst-images:latest
     #   credentials:
@@ -19,15 +20,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: terraform plan
-        uses: dflook/terraform-plan@v1
-
-      - name: terraform apply
-        uses: dflook/terraform-apply@v1
-        with:
-          auto_approve: true
-      # - run: terraform init
-      # - run: terraform fmt
-      # - run: terraform validate
-      # - run: terraform plan
-      # - run: terraform apply -auto-approve
+      - run: terraform init
+      - run: terraform fmt
+      - run: terraform validate
+      - run: terraform plan
+      - run: terraform apply -auto-approve
