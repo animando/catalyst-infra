@@ -19,5 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Init
+        run: terraform init
+
       - name: Destroy
         run: terraform destroy -auto-approve
