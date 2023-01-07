@@ -13,10 +13,4 @@ jobs:
         username: AWS
         password: ${{ secrets.ECR_PASSWORD }}
     steps:
-      - run: echo "inside an ecr container"
-      - run: ls -l /root/iamhere
-      # - uses: actions/checkout@v3
-      # - uses: actions/setup-node@v3
-      #   with:
-      #     node-version: '16'
-      # - run: node scripts/sayHello.js
+      - run: terraform -help
