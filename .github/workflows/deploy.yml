@@ -7,6 +7,10 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    env:
+      - AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      - AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - AWS_ROLE_ARN: arn:aws:iam::726059925999:role/github-role
     container:
       image: 726059925999.dkr.ecr.eu-west-2.amazonaws.com/catalyst-images:latest
       credentials:
