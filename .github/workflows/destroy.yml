@@ -1,7 +1,7 @@
-name: deploy
-on: [push]
+name: destroy
+on: [workflow_dispatch]
 jobs:
-  deploy-infra:
+  destroy-infra:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -19,7 +19,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - run: terraform init
-      - run: terraform fmt
-      - run: terraform validate
-      - run: terraform apply -auto-approve
+      - name: Destroy
+        run: terraform destroy -auto-approve
