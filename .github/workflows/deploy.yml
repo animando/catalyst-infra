@@ -13,4 +13,10 @@ jobs:
         username: AWS
         password: ${{ secrets.ECR_PASSWORD }}
     steps:
-      - run: terraform -help
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - run: terraform init
+      - run: terraform fmt
+      - run: terraform validate
+      - run: terraform plan
