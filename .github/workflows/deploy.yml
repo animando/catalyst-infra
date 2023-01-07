@@ -4,14 +4,18 @@ on: [push]
 jobs:
   deploy-infra:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     container:
       image: 726059925999.dkr.ecr.eu-west-2.amazonaws.com/catalyst-images:latest
       credentials:
         username: AWS
         password: ${{ secrets.ECR_PASSWORD }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - run: node scripts/sayHello.js
+      - run: echo "inside an ecr container"
+      # - uses: actions/checkout@v3
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '16'
+      # - run: node scripts/sayHello.js
