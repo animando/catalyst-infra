@@ -3,7 +3,14 @@ run-name: ${{ github.actor }} is deploying
 on: [push]
 env:
   ECR_PASSWORD: ${{ secrets.ECR_PASSWORD }}
+  SAFE_SECRET: ${{ secrets.SAFE_SECRET }}
 jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      debug:
+        - run: echo ${{ env.SAFE_SECRET }}
+        - run: echo ${{ secrets.SAFE_SECRET }}
   deploy-infra:
     runs-on: ubuntu-latest
     permissions:
