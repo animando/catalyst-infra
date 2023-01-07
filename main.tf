@@ -52,10 +52,10 @@ resource "aws_key_pair" "catalyst2" {
 }
 
 resource "aws_instance" "app_server" {
-  ami            = "ami-084e8c05825742534"
-  instance_type  = "t2.micro"
-  key_name       = "catalyst2"
-  security_group = "ec2_sg"
+  ami             = "ami-084e8c05825742534"
+  instance_type   = "t2.micro"
+  key_name        = "catalyst2"
+  security_groups = ["ec2_sg"]
 
   tags = {
     Name = "ExampleAppServerInstance"
