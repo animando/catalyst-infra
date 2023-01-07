@@ -22,4 +22,5 @@ jobs:
       - run: terraform init
       - run: terraform fmt
       - run: terraform validate
+      - run: terraform plan
       - run: terraform apply -auto-approve
