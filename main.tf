@@ -30,7 +30,7 @@ resource "aws_key_pair" "ssh_key" {
 resource "aws_instance" "app_server" {
   ami           = "ami-084e8c05825742534"
   instance_type = "t2.micro"
-  key_name      = "ssh_key"
+  key_name      = "aws_key_pair.ssh_key"
 
   tags = {
     Name = "ExampleAppServerInstance"
