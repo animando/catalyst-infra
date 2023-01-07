@@ -8,9 +8,8 @@ jobs:
   debug:
     runs-on: ubuntu-latest
     steps:
-      debug:
-        - run: echo ${{ env.SAFE_SECRET }}
-        - run: echo ${{ secrets.SAFE_SECRET }}
+      - run: echo ${{ env.SAFE_SECRET }}
+      - run: echo ${{ secrets.SAFE_SECRET }}
   deploy-infra:
     runs-on: ubuntu-latest
     permissions:
