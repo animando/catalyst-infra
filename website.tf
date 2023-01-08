@@ -1,6 +1,5 @@
 resource "aws_s3_bucket" "ui_website_bucket" {
   bucket = "catalyst-ui-bucket"
-  acl    = "public-read"
 }
 
 resource "aws_s3_bucket_acl" "ui_website_bucket_acl" {
@@ -16,9 +15,12 @@ resource "aws_s3_bucket_policy" "ui_website_policy" {
 data "aws_iam_policy_document" "ui_website_policy" {
   statement {
 
+    principals {
+      type        = "*"
+      identifiers = "*"
+    }
     actions = [
-      "s3:GetObject",
-      "s3:ListBucket",
+      "s3:GetObject"
     ]
 
     resources = [
