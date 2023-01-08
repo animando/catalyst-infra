@@ -3,6 +3,10 @@ resource "aws_s3_bucket" "ui_website_bucket" {
   acl    = "public-read"
 }
 
+resource "aws_s3_bucket_acl" "ui_website_bucket_acl" {
+  bucket = aws_s3_bucket.ui_website_bucket.id
+  acl    = "public-read"
+}
 
 resource "aws_s3_bucket_policy" "ui_website_policy" {
   bucket = aws_s3_bucket.ui_website_bucket.id
@@ -18,7 +22,7 @@ data "aws_iam_policy_document" "ui_website_policy" {
     ]
 
     resources = [
-      aws_s3_bucket.ui_website_policy.arn,
+      aws_s3_bucket.ui_website_bucket.arn,
       "${aws_s3_bucket.ui_website_bucket.arn}/*",
     ]
   }
