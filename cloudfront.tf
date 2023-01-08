@@ -2,10 +2,19 @@ locals {
   s3_origin_id = "uiOriginId"
 }
 
+resource "aws_cloudfront_origin_access_control" "ui_cloudfront_origin_access_control" {
+  name                              = "UI Cloudfront Access Control Policy"
+  description                       = ""
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
+
 resource "aws_cloudfront_distribution" "ui_cloudfront_distribution" {
   origin {
     domain_name              = aws_s3_bucket.ui_website_bucket.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.default.id
+    origin_access_control_id = aws_cloudfront_origin_access_control.ui_cloudfront_origin_access_control.id
     origin_id                = local.s3_origin_id
   }
 
