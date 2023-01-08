@@ -17,7 +17,9 @@ data "aws_iam_policy_document" "ui_website_policy" {
 
     principals {
       type        = "*"
-      identifiers = "*"
+      identifiers = [
+        "*"
+      ]
     }
     actions = [
       "s3:GetObject"
