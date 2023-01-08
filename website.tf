@@ -1,7 +1,6 @@
 resource "aws_s3_bucket" "ui_website_bucket" {
   bucket = "catalyst-ui-bucket"
   acl    = "public-read"
-  policy = file("policy.json")
 }
 
 
