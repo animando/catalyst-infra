@@ -43,3 +43,7 @@ resource "aws_s3_bucket_website_configuration" "ui_website_configuration" {
     key = "error.html"
   }
 }
+
+output "s3_website_address" {
+  value = aws_s3_bucket.ui_website_bucket.bucket_regional_domain_name
+}
