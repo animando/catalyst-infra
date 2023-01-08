@@ -18,7 +18,7 @@ data "aws_iam_policy_document" "ui_website_policy" {
     principals {
       type        = "AWS"
       identifiers = [
-        "*"
+        aws_cloudfront_origin_access_control.ui_cloudfront_origin_access_control.arn
       ]
     }
     actions = [
