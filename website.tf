@@ -2,30 +2,15 @@ resource "aws_s3_bucket" "ui_website_bucket" {
   bucket = "catalyst-ui-bucket"
 }
 
-resource "aws_s3_bucket_policy" "ui_website_policy" {
+resource "aws_s3_bucket_public_access_block" "ui_website_bucket_public_block" {
   bucket = aws_s3_bucket.ui_website_bucket.id
-  policy = data.aws_iam_policy_document.ui_website_policy.json
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
-data "aws_iam_policy_document" "ui_website_policy" {
-  statement {
-
-    principals {
-      type        = "AWS"
-      identifiers = [
-        "*"
-      ]
-    }
-    actions = [
-      "s3:GetObject"
-    ]
-
-    resources = [
-      aws_s3_bucket.ui_website_bucket.arn,
-      "${aws_s3_bucket.ui_website_bucket.arn}/*",
-    ]
-  }
-}
 
 resource "aws_s3_bucket_website_configuration" "ui_website_configuration" {
   bucket = aws_s3_bucket.ui_website_bucket.bucket
