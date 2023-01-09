@@ -10,12 +10,15 @@ resource "aws_cloudfront_origin_access_control" "ui_cloudfront_origin_access_con
   signing_protocol                  = "sigv4"
 }
 
+resource "aws_cloudfront_origin_access_identity" "ui_cloudfront_oai" {
+  comment = "UI Cloudfront Origin Access Identity"
+}
 
 resource "aws_cloudfront_distribution" "ui_cloudfront_distribution" {
   origin {
-    domain_name              = aws_s3_bucket.ui_website_bucket.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.ui_cloudfront_origin_access_control.id
-    origin_id                = local.s3_origin_id
+    s3_origin_config {
+      origin_access_identity = aws_cloudfront_origin_access_identity.ui_cloudfront_oai
+    }
   }
 
   enabled             = true
