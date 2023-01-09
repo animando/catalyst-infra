@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "test_bucket" {
 
 resource "aws_s3_bucket_policy" "test_bucket_policy" {
   bucket = aws_s3_bucket.test_bucket.id
-  policy = data.aws_iam_policy_document.test_bucket.json
+  policy = data.aws_iam_policy_document.test_bucket_policy.json
 }
 
 data "aws_iam_policy_document" "test_bucket_policy" {
