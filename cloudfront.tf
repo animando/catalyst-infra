@@ -19,7 +19,7 @@ resource "aws_cloudfront_distribution" "ui_cloudfront_distribution" {
     domain_name              = aws_s3_bucket.ui_website_bucket.bucket_regional_domain_name
     origin_id                = local.s3_origin_id
     s3_origin_config {
-      origin_access_identity = aws_cloudfront_origin_access_identity.ui_cloudfront_oai
+      origin_access_identity = aws_cloudfront_origin_access_identity.ui_cloudfront_oai.cloudfront_access_identity_path
     }
   }
 
