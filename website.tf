@@ -2,11 +2,6 @@ resource "aws_s3_bucket" "ui_website_bucket" {
   bucket = "catalyst-ui-bucket"
 }
 
-resource "aws_s3_bucket_acl" "ui_website_bucket_acl" {
-  bucket = aws_s3_bucket.ui_website_bucket.id
-  acl    = "private"
-}
-
 resource "aws_s3_bucket_policy" "ui_website_policy" {
   bucket = aws_s3_bucket.ui_website_bucket.id
   policy = data.aws_iam_policy_document.ui_website_policy.json
