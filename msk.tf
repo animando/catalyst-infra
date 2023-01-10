@@ -37,7 +37,7 @@ resource "aws_cloudwatch_log_group" "msk_broker_log_group" {
 }
 
 resource "aws_s3_bucket" "msk_bucket" {
-  bucket = "msk-broker-logs-bucket"
+  bucket = "animando-catalyst-msk-broker-logs-bucket"
 }
 
 resource "aws_s3_bucket_acl" "msk_bucket_acl" {
