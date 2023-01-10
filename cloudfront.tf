@@ -60,10 +60,3 @@ resource "aws_cloudfront_distribution" "ui_cloudfront_distribution" {
     cloudfront_default_certificate = true
   }
 }
-
-output "cloudfront_address" {
-  value = aws_cloudfront_distribution.ui_cloudfront_distribution.domain_name
-}
-output "cloudfront_distribution_id" {
-  value = aws_cloudfront_distribution.ui_cloudfront_distribution.id
-}
