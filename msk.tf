@@ -45,45 +45,45 @@ resource "aws_s3_bucket_acl" "msk_bucket_acl" {
   acl    = "private"
 }
 
-resource "aws_iam_role" "msk_firehose_role" {
-  name = "firehose_test_role"
+# resource "aws_iam_role" "msk_firehose_role" {
+#   name = "firehose_test_role"
 
-  assume_role_policy = <<EOF
-{
-"Version": "2012-10-17",
-"Statement": [
-  {
-    "Action": "sts:AssumeRole",
-    "Principal": {
-      "Service": "firehose.amazonaws.com"
-    },
-    "Effect": "Allow",
-    "Sid": ""
-  }
-  ]
-}
-EOF
-}
+#   assume_role_policy = <<EOF
+# {
+# "Version": "2012-10-17",
+# "Statement": [
+#   {
+#     "Action": "sts:AssumeRole",
+#     "Principal": {
+#       "Service": "firehose.amazonaws.com"
+#     },
+#     "Effect": "Allow",
+#     "Sid": ""
+#   }
+#   ]
+# }
+# EOF
+# }
 
-resource "aws_kinesis_firehose_delivery_stream" "msk_firehose_stream" {
-  name        = "terraform-kinesis-firehose-msk-broker-logs-stream"
-  destination = "s3"
+# resource "aws_kinesis_firehose_delivery_stream" "msk_firehose_stream" {
+#   name        = "terraform-kinesis-firehose-msk-broker-logs-stream"
+#   destination = "s3"
 
-  s3_configuration {
-    role_arn   = aws_iam_role.msk_firehose_role.arn
-    bucket_arn = aws_s3_bucket.msk_bucket.arn
-  }
+#   s3_configuration {
+#     role_arn   = aws_iam_role.msk_firehose_role.arn
+#     bucket_arn = aws_s3_bucket.msk_bucket.arn
+#   }
 
-  tags = {
-    LogDeliveryEnabled = "placeholder"
-  }
+#   tags = {
+#     LogDeliveryEnabled = "placeholder"
+#   }
 
-  lifecycle {
-    ignore_changes = [
-      tags["LogDeliveryEnabled"],
-    ]
-  }
-}
+#   lifecycle {
+#     ignore_changes = [
+#       tags["LogDeliveryEnabled"],
+#     ]
+#   }
+# }
 
 resource "aws_msk_cluster" "msk_cluster" {
   cluster_name           = "catalyst"
@@ -112,10 +112,10 @@ resource "aws_msk_cluster" "msk_cluster" {
   open_monitoring {
     prometheus {
       jmx_exporter {
-        enabled_in_broker = true
+        enabled_in_broker = false
       }
       node_exporter {
-        enabled_in_broker = true
+        enabled_in_broker = false
       }
     }
   }
@@ -126,15 +126,15 @@ resource "aws_msk_cluster" "msk_cluster" {
         enabled   = true
         log_group = aws_cloudwatch_log_group.msk_broker_log_group.name
       }
-      firehose {
-        enabled         = true
-        delivery_stream = aws_kinesis_firehose_delivery_stream.msk_firehose_stream.name
-      }
-      s3 {
-        enabled = true
-        bucket  = aws_s3_bucket.msk_bucket.id
-        prefix  = "logs/msk-"
-      }
+    #   firehose {
+    #     enabled         = true
+    #     delivery_stream = aws_kinesis_firehose_delivery_stream.msk_firehose_stream.name
+    #   }
+    #   s3 {
+    #     enabled = true
+    #     bucket  = aws_s3_bucket.msk_bucket.id
+    #     prefix  = "logs/msk-"
+    #   }
     }
   }
 

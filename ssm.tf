@@ -10,14 +10,14 @@ resource "aws_ssm_parameter" "kafka_broker_connect_string" {
   value = aws_msk_cluster.msk_cluster.bootstrap_brokers
 }
 
-resource "aws_ssm_parameter" "kafka_cluster_id" {
-  name  = "catalyst-kafka-cluster-id"
-  type  = "String"
-  value = aws_msk_cluster.msk_cluster.id
-}
+# resource "aws_ssm_parameter" "kafka_cluster_id" {
+#   name  = "catalyst-kafka-cluster-id"
+#   type  = "String"
+#   value = aws_msk_cluster.msk_cluster.id
+# }
 
-resource "aws_ssm_parameter" "kafka_bootstrap_brokers_iam" {
-  name  = "catalyst-kafka-bootstrap-brokers-iam"
-  type  = "String"
-  value = aws_msk_cluster.msk_cluster.bootstrap_brokers_sasl_iam
-}
+# resource "aws_ssm_parameter" "kafka_bootstrap_brokers_iam" {
+#   name  = "catalyst-kafka-bootstrap-brokers-iam"
+#   type  = "String"
+#   value = aws_msk_cluster.msk_cluster.bootstrap_brokers_sasl_iam
+# }
