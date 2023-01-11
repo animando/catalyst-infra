@@ -68,3 +68,9 @@ resource "aws_ssm_parameter" "msk_security_group_id" {
   type  = "String"
   value = aws_security_group.msk_security_group.id
 }
+
+resource "aws_ssm_parameter" "lambda_security_group_id" {
+  name  = "lambda-security-group-id"
+  type  = "String"
+  value = aws_security_group.lambda_security_group.id
+}

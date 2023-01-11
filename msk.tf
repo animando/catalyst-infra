@@ -24,28 +24,6 @@ resource "aws_subnet" "subnet_az3" {
   vpc_id            = aws_vpc.vpc.id
 }
 
-resource "aws_security_group" "msk_security_group" {
-  vpc_id = aws_vpc.vpc.id
-  ingress {
-    description      = "Kafka from anywhere"
-    from_port        = 2181
-    to_port          = 2181
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Project = "Catalyst"
-  }
-}
-
 resource "aws_kms_key" "msk_kms_key" {
   description = "MSK encryption key"
 }
