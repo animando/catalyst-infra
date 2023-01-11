@@ -132,6 +132,7 @@ resource "aws_msk_cluster" "msk_cluster" {
     sasl {
         iam = true
     }
+    unauthenticated = false
   }
 
   encryption_info {
