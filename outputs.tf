@@ -43,3 +43,21 @@ output "cloudfront_address" {
 output "cloudfront_distribution_id" {
   value = aws_cloudfront_distribution.ui_cloudfront_distribution.id
 }
+
+# VPC
+
+output "vpc_id" {
+  value = aws_vpc.vpc.id
+}
+
+output "subnet_az1_id" {
+  value = aws_subnet.subnet_az1.id
+}
+
+output "subnet_az2_id" {
+  value = aws_subnet.subnet_az2.id
+}
+
+output "subnet_az3_id" {
+  value = aws_subnet.subnet_az3.id
+}
