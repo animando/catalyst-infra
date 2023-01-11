@@ -14,6 +14,12 @@ resource "aws_ssm_parameter" "ui_distribution_domain" {
 #   value = aws_msk_cluster.msk_cluster.bootstrap_brokers
 # }
 
+resource "aws_ssm_parameter" "kafka_cluster_name" {
+  name  = "catalyst-kafka-cluster-name"
+  type  = "String"
+  value = aws_msk_cluster.msk_cluster.cluster_name
+}
+
 resource "aws_ssm_parameter" "kafka_cluster_id" {
   name  = "catalyst-kafka-cluster-id"
   type  = "String"

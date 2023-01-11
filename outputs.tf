@@ -24,6 +24,11 @@ output "msk_cluster_arn" {
   value       = aws_msk_cluster.msk_cluster.arn
 }
 
+output "msk_cluster_name" {
+  description = "msk cluster name"
+  value       = aws_msk_cluster.msk_cluster.cluster_name
+}
+
 output "msk_cluster_id" {
   description = "msk cluster id"
   value       = aws_msk_cluster.msk_cluster.id
