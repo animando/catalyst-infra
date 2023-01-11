@@ -51,6 +51,7 @@ resource "aws_ssm_parameter" "msk_subnet_az3_id" {
   type  = "String"
   value = aws_subnet.subnet_az3.id
 }
+
 resource "aws_ssm_parameter" "msk_security_group_id" {
   name  = "msk-security-group-id"
   type  = "String"
