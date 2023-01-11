@@ -120,11 +120,11 @@ resource "aws_msk_cluster" "msk_cluster" {
         volume_size = 1000
       }
     }
-    connectivity_info {
-        public_access {
-          type = "SERVICE_PROVIDED_EIPS"
-        }
-    }
+    # connectivity_info {
+    #     public_access {
+    #       type = "SERVICE_PROVIDED_EIPS"
+    #     }
+    # }
     security_groups = [aws_security_group.msk_security_group.id]
   }
 
