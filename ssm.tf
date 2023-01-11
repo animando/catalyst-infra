@@ -1,8 +1,12 @@
+# Cloudfront
+
 resource "aws_ssm_parameter" "ui_distribution_domain" {
   name  = "catalyst-ui-distribution-domain"
   type  = "String"
   value = aws_cloudfront_distribution.ui_cloudfront_distribution.domain_name
 }
+
+# MSK
 
 # resource "aws_ssm_parameter" "kafka_broker_connect_string" {
 #   name  = "catalyst-kafka-broker-connect-string"
@@ -21,3 +25,9 @@ resource "aws_ssm_parameter" "kafka_cluster_id" {
 #   type  = "String"
 #   value = aws_msk_cluster.msk_cluster.bootstrap_brokers_sasl_iam
 # }
+
+resource "aws_ssm_parameter" "kafka_bootstrap_brokers_tls" {
+  name  = "catalyst-kafka-bootstrap-brokers-tls"
+  type  = "String"
+  value = aws_msk_cluster.msk_cluster.bootstrap_brokers_tls
+}
