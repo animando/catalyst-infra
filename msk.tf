@@ -128,6 +128,12 @@ resource "aws_msk_cluster" "msk_cluster" {
     security_groups = [aws_security_group.msk_security_group.id]
   }
 
+  client_authentication {
+    sasl {
+        iam = true
+    }
+  }
+
   encryption_info {
     encryption_at_rest_kms_key_arn = aws_kms_key.msk_kms_key.arn
   }
