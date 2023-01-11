@@ -35,19 +35,24 @@ resource "aws_ssm_parameter" "kafka_bootstrap_brokers_tls" {
 # VPC
 
 resource "aws_ssm_parameter" "msk_subnet_az1_id" {
-  name  = "msk_subnet_az1_id"
+  name  = "msk-subnet-az1-id"
   type  = "String"
   value = aws_subnet.subnet_az1.id
 }
 
 resource "aws_ssm_parameter" "msk_subnet_az2_id" {
-  name  = "msk_subnet_az2_id"
+  name  = "msk-subnet-az2-id"
   type  = "String"
   value = aws_subnet.subnet_az2.id
 }
 
 resource "aws_ssm_parameter" "msk_subnet_az3_id" {
-  name  = "msk_subnet_az3_id"
+  name  = "msk-subnet-az3-id"
   type  = "String"
   value = aws_subnet.subnet_az3.id
+}
+resource "aws_ssm_parameter" "msk_security_group_id" {
+  name  = "msk-security-group-id"
+  type  = "String"
+  value = aws_security_group.msk_security_group.id
 }

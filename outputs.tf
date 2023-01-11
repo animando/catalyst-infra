@@ -61,3 +61,7 @@ output "subnet_az2_id" {
 output "subnet_az3_id" {
   value = aws_subnet.subnet_az3.id
 }
+
+output "msk_security_group_id" {
+  value = aws_security_group.msk_security_group.id
+}
