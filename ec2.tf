@@ -9,10 +9,11 @@ resource "aws_instance" "bastion" {
   key_name        = "catalyst"
 
   subnet_id = aws_subnet.subnet_az1
+  
   vpc_security_group_ids = [
     aws_security_group.msk_security_group.id,
     aws_security_group.allow_all_egress,
-    ec2_ssh
+    aws_security_group.ec2_ssh
   ]
 
   tags = {
