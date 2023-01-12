@@ -34,6 +34,10 @@ output "msk_cluster_id" {
   value       = aws_msk_cluster.msk_cluster.id
 }
 
+output "msk_client_authentication" {
+  value = aws_msk_cluster.msk_cluster.client_authentication
+}
+
 # S3
 
 output "s3_website_address" {
