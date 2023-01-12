@@ -12,8 +12,8 @@ resource "aws_instance" "bastion" {
   
   vpc_security_group_ids = [
     aws_security_group.msk_security_group.id,
-    aws_security_group.allow_all_egress,
-    aws_security_group.ec2_ssh
+    aws_security_group.allow_all_egress.id,
+    aws_security_group.ec2_ssh.id
   ]
 
   tags = {
