@@ -8,7 +8,7 @@ resource "aws_instance" "bastion" {
   instance_type   = "t2.micro"
   key_name        = "catalyst"
 
-  subnet_id = aws_subnet.subnet_az1
+  subnet_id = aws_subnet.subnet_az1.id
   
   vpc_security_group_ids = [
     aws_security_group.msk_security_group.id,
