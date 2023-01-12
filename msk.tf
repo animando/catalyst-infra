@@ -1,29 +1,3 @@
-resource "aws_vpc" "vpc" {
-  cidr_block = "10.0.0.0/16"
-}
-
-data "aws_availability_zones" "azs" {
-  state = "available"
-}
-
-resource "aws_subnet" "subnet_az1" {
-  availability_zone = data.aws_availability_zones.azs.names[0]
-  cidr_block        = "10.0.1.0/24"
-  vpc_id            = aws_vpc.vpc.id
-}
-
-resource "aws_subnet" "subnet_az2" {
-  availability_zone = data.aws_availability_zones.azs.names[1]
-  cidr_block        = "10.0.2.0/24"
-  vpc_id            = aws_vpc.vpc.id
-}
-
-resource "aws_subnet" "subnet_az3" {
-  availability_zone = data.aws_availability_zones.azs.names[2]
-  cidr_block        = "10.0.3.0/24"
-  vpc_id            = aws_vpc.vpc.id
-}
-
 resource "aws_kms_key" "msk_kms_key" {
   description = "MSK encryption key"
 }
