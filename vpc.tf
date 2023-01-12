@@ -118,9 +118,9 @@ resource "aws_vpc_endpoint" "sts_vpc_endpoint" {
   }
 }
 
-resource "aws_vpc_endpoint" "sts_vpc_endpoint" {
+resource "aws_vpc_endpoint" "execute-api_vpc_endpoint" {
   vpc_id = aws_vpc.vpc.id
-  service_name = "com.amazonaws.eu-west-2.sts"
+  service_name = "com.amazonaws.eu-west-2.execute-api"
   vpc_endpoint_type = "Interface"
 
   subnet_ids = [
