@@ -79,3 +79,27 @@ resource "aws_security_group" "ec2_ssh" {
     Project = "Catalyst"
   }
 }
+
+resource "aws_security_group" "allow_vpc_https_traffic" {
+  name        = "allow_vpc_https_traffic"
+  vpc_id = aws_vpc.vpc.id
+
+  ingress {
+    description      = "SSL from anywhere"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+  egress {
+    description      = "SSL from anywhere"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Project = "Catalyst"
+  }
+}

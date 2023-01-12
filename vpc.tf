@@ -72,3 +72,92 @@ resource "aws_route_table_association" "public_1_route_table" {
 #   # on the Internet Gateway for the VPC.
 #   depends_on = [aws_internet_gateway.igw]
 # }
+
+
+resource "aws_vpc_endpoint" "lambda_vpc_endpoint" {
+  vpc_id = aws_vpc.vpc.id
+  service_name = "com.amazonaws.eu-west-2.lambda"
+  vpc_endpoint_type = "Interface"
+
+  subnet_ids = [
+    aws_subnet.subnet_az1.id,
+    aws_subnet.subnet_az2.id,
+    aws_subnet.subnet_az3.id
+  ]
+
+  security_group_ids = [
+    aws_security_group.allow_vpc_https_traffic.id
+  ]
+
+  private_dns_enabled = true
+  
+  tags = {
+    Project = "Catalyst"
+  }
+}
+
+resource "aws_vpc_endpoint" "sts_vpc_endpoint" {
+  vpc_id = aws_vpc.vpc.id
+  service_name = "com.amazonaws.eu-west-2.sts"
+  vpc_endpoint_type = "Interface"
+
+  subnet_ids = [
+    aws_subnet.subnet_az1.id,
+    aws_subnet.subnet_az2.id,
+    aws_subnet.subnet_az3.id
+  ]
+
+  security_group_ids = [
+    aws_security_group.allow_vpc_https_traffic.id
+  ]
+
+  private_dns_enabled = true
+
+  tags = {
+    Project = "Catalyst"
+  }
+}
+
+resource "aws_vpc_endpoint" "sts_vpc_endpoint" {
+  vpc_id = aws_vpc.vpc.id
+  service_name = "com.amazonaws.eu-west-2.sts"
+  vpc_endpoint_type = "Interface"
+
+  subnet_ids = [
+    aws_subnet.subnet_az1.id,
+    aws_subnet.subnet_az2.id,
+    aws_subnet.subnet_az3.id
+  ]
+
+  security_group_ids = [
+    aws_security_group.allow_vpc_https_traffic.id
+  ]
+
+  private_dns_enabled = true
+
+  tags = {
+    Project = "Catalyst"
+  }
+}
+
+resource "aws_vpc_endpoint" "secretsmanager_vpc_endpoint" {
+  vpc_id = aws_vpc.vpc.id
+  service_name = "com.amazonaws.eu-west-2.secretsmanager"
+  vpc_endpoint_type = "Interface"
+
+  subnet_ids = [
+    aws_subnet.subnet_az1.id,
+    aws_subnet.subnet_az2.id,
+    aws_subnet.subnet_az3.id
+  ]
+
+  security_group_ids = [
+    aws_security_group.allow_vpc_https_traffic.id
+  ]
+
+  private_dns_enabled = true
+
+  tags = {
+    Project = "Catalyst"
+  }
+}
