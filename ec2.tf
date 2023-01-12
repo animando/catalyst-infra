@@ -4,13 +4,17 @@ resource "aws_key_pair" "catalyst" {
 }
 
 resource "aws_iam_instance_profile" "bastion_iam_profile" {
-  name = "bastion iam profile"
+  name = "bastion-iam-profile"
   role = aws_iam_role.bastion_role.name
 }
 
 resource "aws_iam_role" "bastion_role" {
   name = "bastion_role"
   path = "/"
+
+  managed_policy_arns = [
+    "arn:aws:iam::aws:policy/AmazonMSKFullAccess"
+  ]
 
   assume_role_policy = <<EOF
 {
