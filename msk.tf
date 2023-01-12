@@ -79,7 +79,7 @@ resource "aws_msk_cluster" "msk_cluster" {
     # }
     security_groups = [
       aws_security_group.msk_security_group.id,
-      aws_security_group.allow_vpc_https_traffic
+      aws_security_group.allow_vpc_https_traffic.id
     ]
   }
 
