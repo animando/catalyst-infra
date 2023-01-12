@@ -57,6 +57,20 @@ resource "aws_security_group" "lambda_security_group" {
     protocol         = "tcp"
     cidr_blocks      = [aws_vpc.vpc.cidr_block]
   }
+  egress {
+    description      = "SSL egress"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = [aws_vpc.vpc.cidr_block]
+  }
+  ingress {
+    description      = "SSL ingress"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = [aws_vpc.vpc.cidr_block]
+  }
 
   tags = {
     Project = "Catalyst"
