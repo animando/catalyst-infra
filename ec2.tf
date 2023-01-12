@@ -10,6 +10,8 @@ resource "aws_instance" "bastion" {
 
   subnet_id = aws_subnet.public_subnet_az1.id
   
+  associate_public_ip_address = true
+
   vpc_security_group_ids = [
     aws_security_group.msk_security_group.id,
     aws_security_group.allow_all_egress.id,
