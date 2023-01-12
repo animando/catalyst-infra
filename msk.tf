@@ -77,7 +77,10 @@ resource "aws_msk_cluster" "msk_cluster" {
     #       type = "SERVICE_PROVIDED_EIPS"
     #     }
     # }
-    security_groups = [aws_security_group.msk_security_group.id]
+    security_groups = [
+      aws_security_group.msk_security_group.id,
+      aws_security_group.allow_vpc_https_traffic
+    ]
   }
 
   client_authentication {
