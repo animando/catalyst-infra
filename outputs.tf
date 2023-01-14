@@ -31,7 +31,7 @@ output "msk_cluster_name" {
 
 output "msk_cluster_id" {
   description = "msk cluster id"
-  value       = split(", ", aws_msk_cluster.msk_cluster.id)[2]
+  value       = split("/", aws_msk_cluster.msk_cluster.id)[2]
 }
 
 output "msk_client_authentication" {
