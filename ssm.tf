@@ -23,7 +23,7 @@ resource "aws_ssm_parameter" "kafka_cluster_name" {
 resource "aws_ssm_parameter" "kafka_cluster_id" {
   name  = "catalyst-kafka-cluster-id"
   type  = "String"
-  value = aws_msk_cluster.msk_cluster.id
+  value = split("/", aws_msk_cluster.msk_cluster.id)[2]
 }
 resource "aws_ssm_parameter" "kafka_cluster_arn" {
   name  = "catalyst-kafka-cluster-arn"
