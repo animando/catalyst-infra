@@ -71,7 +71,6 @@ resource "aws_ssm_parameter" "lambda_security_group_id" {
 
 # Cognito
 
-
 resource "aws_ssm_parameter" "user_pool_client_id" {
   name  = "user-pool-client-id"
   type  = "String"
@@ -93,5 +92,5 @@ resource "aws_ssm_parameter" "user_pool_arn" {
 resource "aws_ssm_parameter" "cognito_ui_endpoint" {
   name  = "cognito-ui-endpoint"
   type  = "String"
-  value = "${aws_cognito_user_pool_domain.user_pool_domain.domain}.auth.${data.aws_region.current.name}.amazoncognito.com"
+  value = "https://${aws_cognito_user_pool_domain.user_pool_domain.domain}.auth.${data.aws_region.current.name}.amazoncognito.com"
 }
