@@ -78,3 +78,13 @@ output "msk_security_group_id" {
 output "lambda_security_group_id" {
   value = aws_security_group.lambda_security_group.id
 }
+
+# Cognito
+
+output "cognito_ui_client_secret" {
+  value = aws_cognito_user_pool_client.catalyst_cognito_client_app.client_secret
+}
+
+output "cognito_ui_client_id" {
+  value = aws_cognito_user_pool_client.catalyst_cognito_client_app.id
+}

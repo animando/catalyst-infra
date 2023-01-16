@@ -23,18 +23,6 @@ resource "aws_cognito_user_pool_client" "catalyst_cognito_client_app" {
   supported_identity_providers = ["COGNITO"]
 }
 
-resource "aws_cognito_identity_pool" "identity_pool" {
-  identity_pool_name = "catalyst-identity-pool"
-
-  allow_unauthenticated_identities = false
-
-  provider = aws
-
-  tags = {
-    Project = "Catalyst"
-  }
-}
-
 resource "aws_cognito_user_group" "admin_user_group" {
     name = "admin"
     user_pool_id = aws_cognito_user_pool.user_pool.id
