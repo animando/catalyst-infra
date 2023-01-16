@@ -6,6 +6,12 @@ resource "aws_ssm_parameter" "ui_distribution_domain" {
   value = aws_cloudfront_distribution.ui_cloudfront_distribution.domain_name
 }
 
+resource "aws_ssm_parameter" "ui_distribution_id" {
+  name  = "catalyst-ui-distribution-id"
+  type  = "String"
+  value = aws_cloudfront_distribution.ui_cloudfront_distribution.id
+}
+
 # MSK
 
 resource "aws_ssm_parameter" "kafka_cluster_name" {
