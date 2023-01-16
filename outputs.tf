@@ -81,10 +81,18 @@ output "lambda_security_group_id" {
 
 # Cognito
 
-output "cognito_ui_client_secret" {
-  value = aws_cognito_user_pool_client.catalyst_cognito_client_app.client_secret
+output "cognito_user_pool_client_id" {
+  value = aws_cognito_user_pool_client.catalyst_cognito_client_app.id
 }
 
-output "cognito_ui_client_id" {
-  value = aws_cognito_user_pool_client.catalyst_cognito_client_app.id
+output "cognito_user_pool_id" {
+  value = aws_cognito_user_pool.user_pool.id
+}
+
+output "cognito_user_pool_arn" {
+  value = aws_cognito_user_pool.user_pool.arn
+}
+
+output "cognito_ui_endpoint" {
+  value = "${aws_cognito_user_pool_domain.user_pool_domain.domain}.auth.${data.aws_region.current.name}.amazoncognito.com"
 }

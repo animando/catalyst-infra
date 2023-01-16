@@ -62,3 +62,30 @@ resource "aws_ssm_parameter" "lambda_security_group_id" {
   type  = "String"
   value = aws_security_group.lambda_security_group.id
 }
+
+# Cognito
+
+
+resource "aws_ssm_parameter" "user_pool_client_id" {
+  name  = "user-pool-client-id"
+  type  = "String"
+  value = aws_cognito_user_pool_client.catalyst_cognito_client_app.id
+}
+
+resource "aws_ssm_parameter" "user_pool_id" {
+  name  = "user-pool-id"
+  type  = "String"
+  value = aws_cognito_user_pool.user_pool.id
+}
+
+resource "aws_ssm_parameter" "user_pool_arn" {
+  name  = "user-pool-arn"
+  type  = "String"
+  value = aws_cognito_user_pool.user_pool.arn
+}
+
+resource "aws_ssm_parameter" "cognito_ui_endpoint" {
+  name  = "cognito-ui-endpoint"
+  type  = "String"
+  value = "${aws_cognito_user_pool_domain.user_pool_domain.domain}.auth.${data.aws_region.current.name}.amazoncognito.com"
+}
