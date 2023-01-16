@@ -8,12 +8,6 @@ resource "aws_ssm_parameter" "ui_distribution_domain" {
 
 # MSK
 
-# resource "aws_ssm_parameter" "kafka_broker_connect_string" {
-#   name  = "catalyst-kafka-broker-connect-string"
-#   type  = "String"
-#   value = aws_msk_cluster.msk_cluster.bootstrap_brokers
-# }
-
 resource "aws_ssm_parameter" "kafka_cluster_name" {
   name  = "catalyst-kafka-cluster-name"
   type  = "String"
@@ -36,12 +30,6 @@ resource "aws_ssm_parameter" "kafka_bootstrap_brokers_iam" {
   type  = "String"
   value = aws_msk_cluster.msk_cluster.bootstrap_brokers_sasl_iam
 }
-
-# resource "aws_ssm_parameter" "kafka_bootstrap_brokers_tls" {
-#   name  = "catalyst-kafka-bootstrap-brokers-tls"
-#   type  = "String"
-#   value = aws_msk_cluster.msk_cluster.bootstrap_brokers_tls
-# }
 
 # VPC
 
