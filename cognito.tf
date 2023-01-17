@@ -1,6 +1,12 @@
 resource "aws_cognito_user_pool" "user_pool" {
   name = "catalyst-user-pool"
 
+  lifecycle {
+    ignore_changes = [
+      lambda_config.pre_token_generation
+    ]
+  }
+
   tags = {
     Project = "Catalyst"
   }
