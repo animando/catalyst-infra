@@ -5,6 +5,21 @@ resource "aws_secretsmanager_secret" "userpool_client_secret" {
     Project = "Catalyst"
   }
 }
+resource "aws_secretsmanager_secret" "google_idp_client_id" {
+  name = "google_idp_client_id"
+
+  tags = {
+    Project = "Catalyst"
+  }
+}
+
+resource "aws_secretsmanager_secret" "google_idp_client_secret" {
+  name = "google_idp_client_secret"
+
+  tags = {
+    Project = "Catalyst"
+  }
+}
 
 resource "aws_secretsmanager_secret_version" "userpool_client_secret_version" {
   secret_id     = aws_secretsmanager_secret.userpool_client_secret.id

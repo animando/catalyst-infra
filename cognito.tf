@@ -34,3 +34,19 @@ resource "aws_cognito_user_group" "admin_user_group" {
     user_pool_id = aws_cognito_user_pool.user_pool.id
     description = "Admin"
 }
+
+resource "aws_cognito_identity_provider" "google_idp" {
+  provider_name = "Google"
+  provider_type = "Google"
+
+  provider_details = {
+    authorize_scopes = ["email", "openid", "profile"]
+    client_id        = aws_secretsmanager_secret.google_idp_client_id
+    client_secret    = aws_secretsmanager_secret.google_idp_client_secret
+  }
+
+  attribute_mapping = {
+    email    = "email"
+    username = "sub"
+  }
+}
