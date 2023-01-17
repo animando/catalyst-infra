@@ -100,3 +100,11 @@ resource "aws_ssm_parameter" "cognito_ui_endpoint" {
   type  = "String"
   value = "https://${aws_cognito_user_pool_domain.user_pool_domain.domain}.auth.${data.aws_region.current.name}.amazoncognito.com"
 }
+
+# Secrets
+
+resource "aws_ssm_parameter" "user_pool_client_secret_arn" {
+  name = "user-pool-client-secret-arn"
+  type = "String"
+  value = aws_secretsmanager_secret.userpool_client_secret.arn
+}
