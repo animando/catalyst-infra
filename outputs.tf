@@ -4,16 +4,6 @@ output "zookeeper_connect_string" {
   value = aws_msk_cluster.msk_cluster.zookeeper_connect_string
 }
 
-output "bootstrap_brokers_tls" {
-  description = "TLS connection host:port pairs"
-  value       = aws_msk_cluster.msk_cluster.bootstrap_brokers_tls
-}
-
-output "bootstrap_brokers" {
-  description = "bootstrap brokers"
-  value       = aws_msk_cluster.msk_cluster.bootstrap_brokers
-}
-
 output "bootstrap_brokers_iam" {
   description = "bootstrap brokers iam"
   value       = aws_msk_cluster.msk_cluster.bootstrap_brokers_sasl_iam
@@ -32,10 +22,6 @@ output "msk_cluster_name" {
 output "msk_cluster_id" {
   description = "msk cluster id"
   value       = split("/", aws_msk_cluster.msk_cluster.id)[2]
-}
-
-output "msk_client_authentication" {
-  value = aws_msk_cluster.msk_cluster.client_authentication
 }
 
 # S3
