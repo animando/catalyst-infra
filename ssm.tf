@@ -83,6 +83,12 @@ resource "aws_ssm_parameter" "user_pool_id" {
   value = aws_cognito_user_pool.user_pool.id
 }
 
+resource "aws_ssm_parameter" "user_pool_name" {
+  name  = "user-pool-name"
+  type  = "String"
+  value = aws_cognito_user_pool.user_pool.name
+}
+
 resource "aws_ssm_parameter" "user_pool_arn" {
   name  = "user-pool-arn"
   type  = "String"
