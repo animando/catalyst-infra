@@ -43,8 +43,8 @@ resource "aws_cognito_identity_provider" "google_idp" {
 
   provider_details = {
     authorize_scopes = "email"
-    client_id        = aws_secretsmanager_secret.google_idp_client_id
-    client_secret    = aws_secretsmanager_secret.google_idp_client_secret
+    client_id        = aws_secretsmanager_secret.google_idp_client_id.id
+    client_secret    = aws_secretsmanager_secret.google_idp_client_secret.id
   }
 
   attribute_mapping = {
