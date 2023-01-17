@@ -18,7 +18,7 @@ resource "aws_cognito_user_pool_client" "catalyst_cognito_client_app" {
   callback_urls = ["https://${aws_cloudfront_distribution.ui_cloudfront_distribution.domain_name}","http://localhost:5173"]
   logout_urls = ["https://${aws_cloudfront_distribution.ui_cloudfront_distribution.domain_name}/logout"]
   allowed_oauth_flows_user_pool_client = true
-  allowed_oauth_flows = ["code"]
+  allowed_oauth_flows = ["code", "implicit"]
   allowed_oauth_scopes = ["email", "openid", "profile"]
   supported_identity_providers = ["COGNITO"]
 }
