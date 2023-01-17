@@ -43,8 +43,8 @@ resource "aws_cognito_identity_provider" "google_idp" {
 
   lifecycle {
     ignore_changes = [
-      provider_detail.client_id,
-      provider_detail.client_secret,
+      provider_details.client_id,
+      provider_details.client_secret,
     ]
   }
 
