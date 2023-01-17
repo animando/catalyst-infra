@@ -89,6 +89,12 @@ resource "aws_ssm_parameter" "user_pool_arn" {
   value = aws_cognito_user_pool.user_pool.arn
 }
 
+resource "aws_ssm_parameter" "user_pool_domain" {
+  name  = "user-pool-domain"
+  type  = "String"
+  value = aws_cognito_user_pool_domain.user_pool_domain.domain
+}
+
 resource "aws_ssm_parameter" "cognito_ui_endpoint" {
   name  = "cognito-ui-endpoint"
   type  = "String"
