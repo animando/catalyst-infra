@@ -26,7 +26,7 @@ resource "aws_cloudfront_distribution" "ui_cloudfront_distribution" {
   enabled             = true
   default_root_object = "index.html"
 
-  lifecyle {
+  lifecycle {
     ignore_changes = [
       default_cache_behavior[0].lambda_function_association, # added by serverless auth lambda
     ]
