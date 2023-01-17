@@ -26,7 +26,7 @@ resource "aws_cognito_user_pool_client" "catalyst_cognito_client_app" {
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_flows = ["code", "implicit"]
   allowed_oauth_scopes = ["email", "openid", "profile"]
-  supported_identity_providers = ["COGNITO"]
+  supported_identity_providers = ["COGNITO", aws_cognito_identity_provider.google_idp.provider_name]
 }
 
 resource "aws_cognito_user_group" "admin_user_group" {
@@ -40,6 +40,13 @@ resource "aws_cognito_identity_provider" "google_idp" {
 
   provider_name = "Google"
   provider_type = "Google"
+
+  lifecycle {
+    ignore_changes = [
+      provider_detail.client_id,
+      provider_detail.client_secret,
+    ]
+  }
 
   provider_details = {
     authorize_scopes = "email"
