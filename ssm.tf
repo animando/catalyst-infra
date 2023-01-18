@@ -113,6 +113,12 @@ resource "aws_ssm_parameter" "cognito_ui_endpoint" {
   value = "https://${aws_cognito_user_pool_domain.user_pool_domain.domain}.auth.${data.aws_region.current.name}.amazoncognito.com"
 }
 
+resource "aws_ssm_parameter" "webapi_access_scope" {
+  name  = "webapi-access-scope"
+  type  = "String"
+  value = local.fq_webapi_access_scope
+}
+
 # Secrets
 
 resource "aws_ssm_parameter" "user_pool_client_secret_arn" {

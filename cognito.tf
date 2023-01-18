@@ -25,8 +25,12 @@ resource "aws_cognito_user_pool_client" "catalyst_cognito_client_app" {
   logout_urls = ["https://${aws_cloudfront_distribution.ui_cloudfront_distribution.domain_name}/logout"]
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_flows = ["code", "implicit"]
-  allowed_oauth_scopes = ["email", "openid", "profile"]
+  allowed_oauth_scopes = ["email", "openid", "profile", local.fq_webapi_access_scope]
   supported_identity_providers = ["COGNITO", aws_cognito_identity_provider.google_idp.provider_name]
+
+  depends_on = [
+    aws_cognito_resource_server.catalyst_web_api
+  ]
 }
 
 resource "aws_cognito_user_group" "admin_user_group" {
@@ -57,4 +61,22 @@ resource "aws_cognito_identity_provider" "google_idp" {
     email    = "email"
     username = "sub"
   }
+}
+
+locals {
+  webapi_access_scope = "webapi.access"
+  resource_server_identifier = "https://${local.api_domain}"
+  fq_webapi_access_scope = "${local.resource_server_identifier}/${local.web_access_scope}"
+}
+
+resource "aws_cognito_resource_server" "catalyst_web_api" {
+  identifier = local.resource_server_identifier
+  name = "Catalyst web api"
+
+  scope {
+    scope_name = local.webapi_access_scope
+    scope_description = "Allow access to catalyst web api"
+  }
+
+  user_pool_id = aws_cognito_user_pool.user_pool.id
 }
