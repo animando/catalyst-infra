@@ -13,8 +13,8 @@ resource "aws_cognito_user_pool" "user_pool" {
 }
 
 resource "aws_cognito_user_pool_domain" "user_pool_domain" {
-    domain = "catalyst-ui"
-    user_pool_id = aws_cognito_user_pool.user_pool.id
+  domain = "catalyst-ui"
+  user_pool_id = aws_cognito_user_pool.user_pool.id
 }
 
 resource "aws_cognito_user_pool_client" "catalyst_cognito_client_app" {
