@@ -21,10 +21,10 @@ resource "aws_cognito_user_pool_client" "catalyst_cognito_client_app" {
   name = "catalyst_ui"
   user_pool_id = aws_cognito_user_pool.user_pool.id
   generate_secret = true
-  callback_urls = ["https://${aws_cloudfront_distribution.ui_cloudfront_distribution.domain_name}","http://localhost:5173"]
-  logout_urls = ["https://${aws_cloudfront_distribution.ui_cloudfront_distribution.domain_name}/logout"]
+  callback_urls = ["https://${aws_cloudfront_distribution.ui_cloudfront_distribution.domain_name}"]
+  logout_urls = ["https://${aws_cloudfront_distribution.ui_cloudfront_distribution.domain_name}"]
   allowed_oauth_flows_user_pool_client = true
-  allowed_oauth_flows = ["code", "implicit"]
+  allowed_oauth_flows = ["code"]
   allowed_oauth_scopes = ["email", "openid", "profile", local.fq_webapi_access_scope]
   supported_identity_providers = ["COGNITO", aws_cognito_identity_provider.google_idp.provider_name]
 
@@ -34,9 +34,9 @@ resource "aws_cognito_user_pool_client" "catalyst_cognito_client_app" {
 }
 
 resource "aws_cognito_user_group" "admin_user_group" {
-    name = "admin"
-    user_pool_id = aws_cognito_user_pool.user_pool.id
-    description = "Admin"
+  name = "admin"
+  user_pool_id = aws_cognito_user_pool.user_pool.id
+  description = "Admin"
 }
 
 resource "aws_cognito_identity_provider" "google_idp" {
@@ -66,7 +66,7 @@ resource "aws_cognito_identity_provider" "google_idp" {
 locals {
   webapi_access_scope = "webapi.access"
   resource_server_identifier = "https://${local.api_domain}"
-  fq_webapi_access_scope = "${local.resource_server_identifier}/${local.web_access_scope}"
+  fq_webapi_access_scope = "${local.resource_server_identifier}/${local.webapi_access_scope}"
 }
 
 resource "aws_cognito_resource_server" "catalyst_web_api" {
