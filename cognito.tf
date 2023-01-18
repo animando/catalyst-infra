@@ -3,7 +3,7 @@ resource "aws_cognito_user_pool" "user_pool" {
 
   lifecycle {
     ignore_changes = [
-      lambda_config[0].pre_token_generation
+      lambda_config.pre_token_generation
     ]
   }
 
