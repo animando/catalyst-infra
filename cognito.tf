@@ -3,7 +3,7 @@ resource "aws_cognito_user_pool" "user_pool" {
 
   lifecycle {
     ignore_changes = [
-      lambda_config[0].pre_token_generation
+      lambda_config
     ]
   }
 
@@ -43,8 +43,7 @@ resource "aws_cognito_identity_provider" "google_idp" {
 
   lifecycle {
     ignore_changes = [
-      provider_details.client_id,
-      provider_details.client_secret,
+      provider_details
     ]
   }
 
