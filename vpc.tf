@@ -127,7 +127,6 @@ resource "aws_vpc_endpoint" "sns_vpc_endpoint" {
 resource "aws_vpc_endpoint" "dynamodb_vpc_endpoint" {
   vpc_id = aws_vpc.vpc.id
   service_name = "com.amazonaws.eu-west-2.dynamodb"
-  vpc_endpoint_type = "Interface"
 
   subnet_ids = [
     aws_subnet.subnet_az1.id,
