@@ -135,9 +135,9 @@ resource "aws_vpc_endpoint" "dynamodb_vpc_endpoint" {
 
   route_table_ids = [
     aws_vpc.vpc.default_route_table_id,
-    aws_route_table.private_route_table.id,
-    aws_route_table.private_route_table.id,
-    aws_route_table.private_route_table.id
+    aws_route_table.private_route_table_az1.id,
+    aws_route_table.private_route_table_az2.id,
+    aws_route_table.private_route_table_az3.id
   ]
 
   private_dns_enabled = true
