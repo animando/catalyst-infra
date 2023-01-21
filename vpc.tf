@@ -140,8 +140,6 @@ resource "aws_vpc_endpoint" "dynamodb_vpc_endpoint" {
     aws_route_table.private_route_table_az3.id
   ]
 
-  private_dns_enabled = true
-
   tags = {
     Project = "Catalyst"
   }
