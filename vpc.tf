@@ -44,6 +44,18 @@ resource "aws_subnet" "public_subnet_az1" {
   vpc_id            = aws_vpc.vpc.id
 }
 
+resource "aws_subnet" "public_subnet_az2" {
+  availability_zone = data.aws_availability_zones.azs.names[1]
+  cidr_block        = "10.0.21.0/24"
+  vpc_id            = aws_vpc.vpc.id
+}
+
+resource "aws_subnet" "public_subnet_az3" {
+  availability_zone = data.aws_availability_zones.azs.names[2]
+  cidr_block        = "10.0.31.0/24"
+  vpc_id            = aws_vpc.vpc.id
+}
+
 resource "aws_route_table" "igw_route_table" {
   vpc_id = aws_vpc.vpc.id
 
@@ -57,8 +69,18 @@ resource "aws_route_table" "igw_route_table" {
   }
 }
 
-resource "aws_route_table_association" "public_1_route_table" {
+resource "aws_route_table_association" "public_route_table_az1" {
   subnet_id = aws_subnet.public_subnet_az1.id
+  route_table_id = aws_route_table.igw_route_table.id
+}
+
+resource "aws_route_table_association" "public_route_table_az2" {
+  subnet_id = aws_subnet.public_subnet_az2.id
+  route_table_id = aws_route_table.igw_route_table.id
+}
+
+resource "aws_route_table_association" "public_route_table_az3" {
+  subnet_id = aws_subnet.public_subnet_az3.id
   route_table_id = aws_route_table.igw_route_table.id
 }
 
@@ -199,15 +221,8 @@ resource "aws_eip" "eip" {
   vpc = true
 }
 
-resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.vpc.id
 
-  tags = {
-    Project = "Catalyst"
-  }
-}
-
-resource "aws_nat_gateway" "public_nat_gateway" {
+resource "aws_nat_gateway" "public_nat_gateway_az1" {
   allocation_id = aws_eip.eip.id
   subnet_id = aws_subnet.public_subnet_az1.id
 
@@ -220,30 +235,38 @@ resource "aws_nat_gateway" "public_nat_gateway" {
   ]
 }
 
-resource "aws_route_table" "igw_route_table" {
-  vpc_id = aws_vpc.vpc.id
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw.id
-  }
+resource "aws_nat_gateway" "public_nat_gateway_az2" {
+  allocation_id = aws_eip.eip.id
+  subnet_id = aws_subnet.public_subnet_az2.id
 
   tags = {
     Project = "Catalyst"
   }
+
+  depends_on = [
+    aws_internet_gateway.igw
+  ]
 }
 
-resource "aws_route_table_association" "public_route_table_assoc_az1" {
-  subnet_id = aws_subnet.public_subnet_az1.id
-  route_table_id = aws_route_table.igw_route_table.id
+resource "aws_nat_gateway" "public_nat_gateway_az2" {
+  allocation_id = aws_eip.eip.id
+  subnet_id = aws_subnet.public_subnet_az2.id
+
+  tags = {
+    Project = "Catalyst"
+  }
+
+  depends_on = [
+    aws_internet_gateway.igw
+  ]
 }
 
-resource "aws_route_table" "private_route_table" {
+resource "aws_route_table" "private_route_table_az3" {
   vpc_id = aws_vpc.vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.public_nat_gateway.id
+    nat_gateway_id = aws_nat_gateway.public_nat_gateway_az3.id
   }
 
   tags = {
@@ -253,5 +276,15 @@ resource "aws_route_table" "private_route_table" {
 
 resource "aws_route_table_association" "private_route_table_assoc_az1" {
   subnet_id = aws_subnet.subnet_az1.id
-  route_table_id = aws_route_table.private_route_table.id
+  route_table_id = aws_route_table.private_route_table_az1.id
+}
+
+resource "aws_route_table_association" "private_route_table_assoc_az2" {
+  subnet_id = aws_subnet.subnet_az2.id
+  route_table_id = aws_route_table.private_route_table_az2.id
+}
+
+resource "aws_route_table_association" "private_route_table_assoc_az3" {
+  subnet_id = aws_subnet.subnet_az3.id
+  route_table_id = aws_route_table.private_route_table_az3.id
 }
