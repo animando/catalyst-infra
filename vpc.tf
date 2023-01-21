@@ -20,10 +20,6 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-# resource "aws_eip" "eip" {
-#   vpc      = true
-# }
-
 resource "aws_subnet" "subnet_az1" {
   availability_zone = data.aws_availability_zones.azs.names[0]
   cidr_block        = "10.0.1.0/24"
@@ -55,7 +51,7 @@ resource "aws_route_table" "igw_route_table" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
-  
+
   tags = {
     Project = "Catalyst"
   }
@@ -65,20 +61,6 @@ resource "aws_route_table_association" "public_1_route_table" {
   subnet_id = aws_subnet.public_subnet_az1.id
   route_table_id = aws_route_table.igw_route_table.id
 }
-
-# resource "aws_nat_gateway" "nat_gateway" {
-#   allocation_id = aws_eip.eip.id
-#   subnet_id     = aws_subnet.public_subnet_az1.id
-
-#   tags = {
-#     Project = "Catalyst"
-#   }
-
-#   # To ensure proper ordering, it is recommended to add an explicit dependency
-#   # on the Internet Gateway for the VPC.
-#   depends_on = [aws_internet_gateway.igw]
-# }
-
 
 resource "aws_vpc_endpoint" "lambda_vpc_endpoint" {
   vpc_id = aws_vpc.vpc.id
@@ -96,7 +78,7 @@ resource "aws_vpc_endpoint" "lambda_vpc_endpoint" {
   ]
 
   private_dns_enabled = true
-  
+
   tags = {
     Project = "Catalyst"
   }
@@ -118,7 +100,7 @@ resource "aws_vpc_endpoint" "sns_vpc_endpoint" {
   ]
 
   private_dns_enabled = true
-  
+
   tags = {
     Project = "Catalyst"
   }
@@ -126,12 +108,12 @@ resource "aws_vpc_endpoint" "sns_vpc_endpoint" {
 
 resource "aws_vpc_endpoint" "dynamodb_vpc_endpoint" {
   vpc_id = aws_vpc.vpc.id
+  vpc_endpoint_type = "Gateway"
   service_name = "com.amazonaws.eu-west-2.dynamodb"
 
-  subnet_ids = [
-    aws_subnet.subnet_az1.id,
-    aws_subnet.subnet_az2.id,
-    aws_subnet.subnet_az3.id
+  route_table_ids = [
+    aws_vpc.vpc.default_route_table_id,
+    aws_route_table.private_route_table.id
   ]
 
   security_group_ids = [
@@ -139,7 +121,7 @@ resource "aws_vpc_endpoint" "dynamodb_vpc_endpoint" {
   ]
 
   private_dns_enabled = true
-  
+
   tags = {
     Project = "Catalyst"
   }
@@ -209,4 +191,67 @@ resource "aws_vpc_endpoint" "secretsmanager_vpc_endpoint" {
   tags = {
     Project = "Catalyst"
   }
+}
+
+#
+
+resource "aws_eip" "eip" {
+  vpc = true
+}
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.vpc.id
+
+  tags = {
+    Project = "Catalyst"
+  }
+}
+
+resource "aws_nat_gateway" "public_nat_gateway" {
+  allocation_id = aws_eip.eip.id
+  subnet_id = aws_subnet.public_subnet_az1.id
+
+  tags = {
+    Project = "Catalyst"
+  }
+
+  depends_on = [
+    aws_internet_gateway.igw
+  ]
+}
+
+resource "aws_route_table" "igw_route_table" {
+  vpc_id = aws_vpc.vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Project = "Catalyst"
+  }
+}
+
+resource "aws_route_table_association" "public_route_table_assoc_az1" {
+  subnet_id = aws_subnet.public_subnet_az1.id
+  route_table_id = aws_route_table.igw_route_table.id
+}
+
+resource "aws_route_table" "private_route_table" {
+  vpc_id = aws_vpc.vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.public_nat_gateway.id
+  }
+
+  tags = {
+    Project = "Catalyst"
+  }
+}
+
+resource "aws_route_table_association" "private_route_table_assoc_az1" {
+  subnet_id = aws_subnet.subnet_az1.id
+  route_table_id = aws_route_table.private_route_table.id
 }
