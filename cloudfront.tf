@@ -59,6 +59,7 @@ resource "aws_cloudfront_distribution" "ui_cloudfront_distribution" {
   }
 
   tags = {
+    Name = "Catalyst UI Distribution"
     Project = "Catalyst"
   }
 

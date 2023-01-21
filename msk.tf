@@ -70,6 +70,7 @@ resource "aws_msk_cluster" "msk_cluster" {
   }
 
   tags = {
+    Name = "Catalyst Kafka Cluster"
     Project = "Catalyst"
   }
 }

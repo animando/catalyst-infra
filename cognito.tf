@@ -8,6 +8,7 @@ resource "aws_cognito_user_pool" "user_pool" {
   }
 
   tags = {
+    Name = "Catalyst User Pool"
     Project = "Catalyst"
   }
 }

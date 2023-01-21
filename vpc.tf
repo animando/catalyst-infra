@@ -4,6 +4,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_support = true
 
   tags = {
+    Name = "Catalyst VPC"
     Project = "Catalyst"
   }
 }
@@ -16,6 +17,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
+    Name = "Catalyst Internet Gateway"
     Project = "Catalyst"
   }
 }
@@ -24,36 +26,66 @@ resource "aws_subnet" "subnet_az1" {
   availability_zone = data.aws_availability_zones.azs.names[0]
   cidr_block        = "10.0.1.0/24"
   vpc_id            = aws_vpc.vpc.id
+
+  tags = {
+    Name = "Private Subnet AZ1"
+    Project = "Catalyst"
+  }
 }
 
 resource "aws_subnet" "subnet_az2" {
   availability_zone = data.aws_availability_zones.azs.names[1]
   cidr_block        = "10.0.2.0/24"
   vpc_id            = aws_vpc.vpc.id
+
+  tags = {
+    Name = "Private Subnet AZ2"
+    Project = "Catalyst"
+  }
 }
 
 resource "aws_subnet" "subnet_az3" {
   availability_zone = data.aws_availability_zones.azs.names[2]
   cidr_block        = "10.0.3.0/24"
   vpc_id            = aws_vpc.vpc.id
+
+  tags = {
+    Name = "Private Subnet AZ3"
+    Project = "Catalyst"
+  }
 }
 
 resource "aws_subnet" "public_subnet_az1" {
   availability_zone = data.aws_availability_zones.azs.names[0]
   cidr_block        = "10.0.11.0/24"
   vpc_id            = aws_vpc.vpc.id
+
+  tags = {
+    Name = "Public Subnet AZ1"
+    Project = "Catalyst"
+  }
 }
 
 resource "aws_subnet" "public_subnet_az2" {
   availability_zone = data.aws_availability_zones.azs.names[1]
   cidr_block        = "10.0.21.0/24"
   vpc_id            = aws_vpc.vpc.id
+
+  tags = {
+    Name = "Public Subnet AZ2"
+    Project = "Catalyst"
+  }
 }
 
 resource "aws_subnet" "public_subnet_az3" {
   availability_zone = data.aws_availability_zones.azs.names[2]
   cidr_block        = "10.0.31.0/24"
   vpc_id            = aws_vpc.vpc.id
+
+  tags = {
+    Name = "Public Subnet AZ3"
+    Project = "Catalyst"
+  }
 }
 
 resource "aws_route_table" "igw_route_table" {
@@ -65,6 +97,7 @@ resource "aws_route_table" "igw_route_table" {
   }
 
   tags = {
+    Name = "Internet Gateway Route Table"
     Project = "Catalyst"
   }
 }
@@ -102,6 +135,7 @@ resource "aws_vpc_endpoint" "lambda_vpc_endpoint" {
   private_dns_enabled = true
 
   tags = {
+    Name = "Lambda VPC Endpoint"
     Project = "Catalyst"
   }
 }
@@ -124,6 +158,7 @@ resource "aws_vpc_endpoint" "sns_vpc_endpoint" {
   private_dns_enabled = true
 
   tags = {
+    Name = "SNS VPC Endpoint"
     Project = "Catalyst"
   }
 }
@@ -141,6 +176,7 @@ resource "aws_vpc_endpoint" "dynamodb_vpc_endpoint" {
   ]
 
   tags = {
+    Name = "DynamoDb VPC Endpoint"
     Project = "Catalyst"
   }
 }
@@ -163,6 +199,7 @@ resource "aws_vpc_endpoint" "sts_vpc_endpoint" {
   private_dns_enabled = true
 
   tags = {
+    Name = "STS VPC Endpoint"
     Project = "Catalyst"
   }
 }
@@ -185,6 +222,7 @@ resource "aws_vpc_endpoint" "execute-api_vpc_endpoint" {
   private_dns_enabled = true
 
   tags = {
+    Name = "Execute API VPC Endpoint"
     Project = "Catalyst"
   }
 }
@@ -207,6 +245,7 @@ resource "aws_vpc_endpoint" "secretsmanager_vpc_endpoint" {
   private_dns_enabled = true
 
   tags = {
+    Name = "Secrets Manager VPC Endpoint"
     Project = "Catalyst"
   }
 }
@@ -216,6 +255,7 @@ resource "aws_eip" "eip_az1" {
   vpc = true
 
   tags = {
+    Name = "Elastic IP 1"
     Project = "Catalyst"
   }
 }
@@ -224,6 +264,7 @@ resource "aws_eip" "eip_az2" {
   vpc = true
 
   tags = {
+    Name = "Elastic IP 2"
     Project = "Catalyst"
   }
 }
@@ -232,6 +273,7 @@ resource "aws_eip" "eip_az3" {
   vpc = true
 
   tags = {
+    Name = "Elastic IP 3"
     Project = "Catalyst"
   }
 }
@@ -242,6 +284,7 @@ resource "aws_nat_gateway" "public_nat_gateway_az1" {
   subnet_id = aws_subnet.public_subnet_az1.id
 
   tags = {
+    Name = "Catalyst Nat Gateway AZ1"
     Project = "Catalyst"
   }
 
@@ -255,6 +298,7 @@ resource "aws_nat_gateway" "public_nat_gateway_az2" {
   subnet_id = aws_subnet.public_subnet_az2.id
 
   tags = {
+    Name = "Catalyst Nat Gateway AZ2"
     Project = "Catalyst"
   }
 
@@ -268,6 +312,7 @@ resource "aws_nat_gateway" "public_nat_gateway_az3" {
   subnet_id = aws_subnet.public_subnet_az3.id
 
   tags = {
+    Name = "Catalyst Nat Gateway AZ3"
     Project = "Catalyst"
   }
 
@@ -285,6 +330,7 @@ resource "aws_route_table" "private_route_table_az1" {
   }
 
   tags = {
+    Name = "Private Route Table AZ1"
     Project = "Catalyst"
   }
 }
@@ -298,6 +344,7 @@ resource "aws_route_table" "private_route_table_az2" {
   }
 
   tags = {
+    Name = "Private Route Table AZ2"
     Project = "Catalyst"
   }
 }
@@ -311,6 +358,7 @@ resource "aws_route_table" "private_route_table_az3" {
   }
 
   tags = {
+    Name = "Private Route Table AZ3"
     Project = "Catalyst"
   }
 }

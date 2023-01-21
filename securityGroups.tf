@@ -18,6 +18,7 @@ resource "aws_security_group" "allow_all_egress" {
   }
 
   tags = {
+    Name = "All HTTP/S egress"
     Project = "Catalyst"
   }
 }
@@ -42,6 +43,7 @@ resource "aws_security_group" "msk_security_group" {
   }
 
   tags = {
+    Name = "Allow MSK ingress/egress"
     Project = "Catalyst"
   }
 }
@@ -73,6 +75,7 @@ resource "aws_security_group" "lambda_security_group" {
   }
 
   tags = {
+    Name = "Lambda security group"
     Project = "Catalyst"
   }
 }
@@ -82,14 +85,15 @@ resource "aws_security_group" "ec2_ssh" {
   vpc_id = aws_vpc.vpc.id
 
   ingress {
-    description      = "SSH from anywhere"
+    description      = "SSH from office"
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    cidr_blocks      = ["82.44.227.213/32"]
   }
 
   tags = {
+    Name = "Allow EC2 SSH ingress"
     Project = "Catalyst"
   }
 }
@@ -114,6 +118,7 @@ resource "aws_security_group" "allow_vpc_https_traffic" {
   }
 
   tags = {
+    Name = "Allow VPC HTTPs traffic"
     Project = "Catalyst"
   }
 }
