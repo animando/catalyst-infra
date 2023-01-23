@@ -12,11 +12,13 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_ROLE_ARN: arn:aws:iam::726059925999:role/github-role
       TF_HTTP_PASSWORD: ${{ secrets.TF_HTTP_PASSWORD }}
+      GOOGLE_IDP_APP_ID: ${{ secrets.GOOGLE_IDP_APP_ID }}
+      GOOGLE_IDP_APP_SECRET: ${{ secrets.GOOGLE_IDP_APP_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - run: terraform init
       - run: terraform validate
-      - run: terraform plan -var environment=dev
-      - run: terraform apply -auto-approve -var environment=dev
+      - run: terraform plan -var environment=dev -var google_idp_app_id ${GOOGLE_IDP_APP_ID} -var google_idp_app_secret ${GOOGLE_IDP_APP_SECRET}
+      - run: terraform apply -auto-approve -var environment=dev -var google_idp_app_id ${GOOGLE_IDP_APP_ID} -var google_idp_app_secret ${GOOGLE_IDP_APP_SECRET}

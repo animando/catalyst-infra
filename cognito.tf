@@ -3,7 +3,7 @@ resource "aws_cognito_user_pool" "user_pool" {
 
   lifecycle {
     ignore_changes = [
-      lambda_config
+      lambda_config # pre token generation trigger is added by application
     ]
   }
 
@@ -46,16 +46,10 @@ resource "aws_cognito_identity_provider" "google_idp" {
   provider_name = "Google"
   provider_type = "Google"
 
-  lifecycle {
-    ignore_changes = [
-      provider_details
-    ]
-  }
-
   provider_details = {
     authorize_scopes = "email"
-    client_id        = aws_secretsmanager_secret.google_idp_client_id.id
-    client_secret    = aws_secretsmanager_secret.google_idp_client_secret.id
+    client_id        = var.google_idp_app_id
+    client_secret    = var.google_idp_app_secret
   }
 
   attribute_mapping = {
