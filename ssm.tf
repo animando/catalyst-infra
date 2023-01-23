@@ -124,5 +124,5 @@ resource "aws_ssm_parameter" "webapi_access_scope" {
 resource "aws_ssm_parameter" "user_pool_client_secret_arn" {
   name = "user-pool-client-secret-arn"
   type = "String"
-  value = aws_secretsmanager_secret.userpool_client_secret.arn
+  value = aws_secretsmanager_secret.cognito_userpool_client_secret.arn
 }
