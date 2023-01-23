@@ -1,27 +1,27 @@
 # MSK
 
 output "zookeeper_connect_string" {
-  value = aws_msk_cluster.msk_cluster.zookeeper_connect_string
+  value = "disabled" #aws_msk_cluster.msk_cluster.zookeeper_connect_string
 }
 
 output "bootstrap_brokers_iam" {
   description = "bootstrap brokers iam"
-  value       = aws_msk_cluster.msk_cluster.bootstrap_brokers_sasl_iam
+  value       = "disabled" #aws_msk_cluster.msk_cluster.bootstrap_brokers_sasl_iam
 }
 
 output "msk_cluster_arn" {
   description = "msk cluster arn"
-  value       = aws_msk_cluster.msk_cluster.arn
+  value       = "disabled" #aws_msk_cluster.msk_cluster.arn
 }
 
 output "msk_cluster_name" {
   description = "msk cluster name"
-  value       = aws_msk_cluster.msk_cluster.cluster_name
+  value       = "disabled" #aws_msk_cluster.msk_cluster.cluster_name
 }
 
 output "msk_cluster_id" {
   description = "msk cluster id"
-  value       = split("/", aws_msk_cluster.msk_cluster.id)[2]
+  value       = "disabled" #split("/", aws_msk_cluster.msk_cluster.id)[2]
 }
 
 # S3
