@@ -33,7 +33,6 @@ resource "aws_iam_role" "bastion_role" {
 EOF
 }
 
-
 resource "aws_instance" "bastion" {
   ami             = "ami-084e8c05825742534"
   instance_type   = "t2.micro"
