@@ -14,28 +14,28 @@ resource "aws_ssm_parameter" "ui_distribution_id" {
 
 # MSK
 
-# resource "aws_ssm_parameter" "kafka_cluster_name" {
-#   name  = "catalyst-kafka-cluster-name"
-#   type  = "String"
-#   value = aws_msk_cluster.msk_cluster.cluster_name
-# }
+resource "aws_ssm_parameter" "kafka_cluster_name" {
+  name  = "catalyst-kafka-cluster-name"
+  type  = "String"
+  value = "disabled"#aws_msk_cluster.msk_cluster.cluster_name
+}
 
-# resource "aws_ssm_parameter" "kafka_cluster_id" {
-#   name  = "catalyst-kafka-cluster-id"
-#   type  = "String"
-#   value = split("/", aws_msk_cluster.msk_cluster.id)[2]
-# }
-# resource "aws_ssm_parameter" "kafka_cluster_arn" {
-#   name  = "catalyst-kafka-cluster-arn"
-#   type  = "String"
-#   value = aws_msk_cluster.msk_cluster.arn
-# }
+resource "aws_ssm_parameter" "kafka_cluster_id" {
+  name  = "catalyst-kafka-cluster-id"
+  type  = "String"
+  value = "disabled"#split("/", aws_msk_cluster.msk_cluster.id)[2]
+}
+resource "aws_ssm_parameter" "kafka_cluster_arn" {
+  name  = "catalyst-kafka-cluster-arn"
+  type  = "String"
+  value = "disabled"#aws_msk_cluster.msk_cluster.arn
+}
 
-# resource "aws_ssm_parameter" "kafka_bootstrap_brokers_iam" {
-#   name  = "catalyst-kafka-bootstrap-brokers-iam"
-#   type  = "String"
-#   value = aws_msk_cluster.msk_cluster.bootstrap_brokers_sasl_iam
-# }
+resource "aws_ssm_parameter" "kafka_bootstrap_brokers_iam" {
+  name  = "catalyst-kafka-bootstrap-brokers-iam"
+  type  = "String"
+  value = "disabled"#aws_msk_cluster.msk_cluster.bootstrap_brokers_sasl_iam
+}
 
 # VPC
 
