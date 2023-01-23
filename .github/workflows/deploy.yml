@@ -20,5 +20,5 @@ jobs:
 
       - run: terraform init
       - run: terraform validate
-      - run: terraform plan -var environment=dev -var google_idp_app_id ${GOOGLE_IDP_APP_ID} -var google_idp_app_secret ${GOOGLE_IDP_APP_SECRET}
-      - run: terraform apply -auto-approve -var environment=dev -var google_idp_app_id ${GOOGLE_IDP_APP_ID} -var google_idp_app_secret ${GOOGLE_IDP_APP_SECRET}
+      - run: terraform plan -var environment=dev -var google_idp_app_id=${GOOGLE_IDP_APP_ID} -var google_idp_app_secret=${GOOGLE_IDP_APP_SECRET}
+      - run: terraform apply -auto-approve -var environment=dev -var google_idp_app_id=${GOOGLE_IDP_APP_ID} -var google_idp_app_secret=${GOOGLE_IDP_APP_SECRET}
