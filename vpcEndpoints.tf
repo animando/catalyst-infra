@@ -44,40 +44,14 @@ resource "aws_vpc_endpoint" "sns_vpc_endpoint" {
   }
 }
 
-# resource "aws_vpc_endpoint" "dynamodb_vpc_endpoint" {
-#   vpc_id = aws_vpc.vpc.id
-#   vpc_endpoint_type = "Gateway"
-#   service_name = "com.amazonaws.eu-west-2.dynamodb"
-
-#   route_table_ids = [
-#     aws_vpc.vpc.default_route_table_id,
-#     aws_route_table.private_route_table_az1.id,
-#     aws_route_table.private_route_table_az2.id,
-#     aws_route_table.private_route_table_az3.id
-#   ]
-
-#   tags = {
-#     Name = "DynamoDb VPC Endpoint"
-#     Project = "Catalyst"
-#   }
-# }
-
 resource "aws_vpc_endpoint" "dynamodb_vpc_endpoint" {
   vpc_id = aws_vpc.vpc.id
+  vpc_endpoint_type = "Gateway"
   service_name = "com.amazonaws.eu-west-2.dynamodb"
-  vpc_endpoint_type = "Interface"
 
-  subnet_ids = [
-    aws_subnet.subnet_az1.id,
-    aws_subnet.subnet_az2.id,
-    aws_subnet.subnet_az3.id
+  route_table_ids = [
+    aws_vpc.vpc.default_route_table_id
   ]
-
-  security_group_ids = [
-    aws_security_group.allow_vpc_https_traffic.id
-  ]
-
-  private_dns_enabled = true
 
   tags = {
     Name = "DynamoDb VPC Endpoint"
