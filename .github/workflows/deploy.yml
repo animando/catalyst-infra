@@ -14,6 +14,8 @@ jobs:
       TF_HTTP_PASSWORD: ${{ secrets.TF_HTTP_PASSWORD }}
       GOOGLE_IDP_APP_ID: ${{ secrets.GOOGLE_IDP_APP_ID }}
       GOOGLE_IDP_APP_SECRET: ${{ secrets.GOOGLE_IDP_APP_SECRET }}
+      ES_USERNAME: ${{ secrets.ES_USERNAME }}
+      ES_PASSWORD: ${{ secrets.ES_PASSWORD }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3

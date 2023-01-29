@@ -87,3 +87,21 @@ output "cognito_user_pool_arn" {
 output "cognito_ui_endpoint" {
   value = "${aws_cognito_user_pool_domain.user_pool_domain.domain}.auth.${data.aws_region.current.name}.amazoncognito.com"
 }
+
+# Elastic Search
+
+output "es_endpoint" {
+  value = aws_elasticsearch_domain.es_domain.endpoint
+}
+
+output "es_domain_name" {
+  value = aws_elasticsearch_domain.es_domain.domain_name
+}
+
+output "es_domain_id" {
+  value = aws_elasticsearch_domain.es_domain.domain_id
+}
+
+output "es_arn" {
+  value = aws_elasticsearch_domain.es_domain.arn
+}
