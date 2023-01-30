@@ -20,6 +20,10 @@ resource "aws_elasticsearch_domain" "es_domain" {
     enabled = true
   }
 
+  encrypt_at_rest {
+    enabled = true
+  }
+
   tags = {
     Name = "Logs ElasticSearch Domain"
     Project = "Catalyst"
