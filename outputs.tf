@@ -105,3 +105,6 @@ output "es_domain_id" {
 output "es_arn" {
   value = aws_elasticsearch_domain.es_domain.arn
 }
+output "es_kibana_endpoint" {
+  value = aws_elasticsearch_domain.es_domain.kibana_endpoint
+}
