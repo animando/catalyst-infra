@@ -24,6 +24,10 @@ resource "aws_elasticsearch_domain" "es_domain" {
     enabled = true
   }
 
+  domain_endpoint_options {
+    enforce_https = true
+  }
+
   tags = {
     Name = "Logs ElasticSearch Domain"
     Project = "Catalyst"
