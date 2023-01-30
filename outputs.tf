@@ -109,12 +109,12 @@ output "cognito_ui_endpoint" {
 #   value = aws_elasticsearch_domain.es_domain.kibana_endpoint
 # }
 
-output "debug1" {
-  value = data.aws_region.current.name
-}
-output "debug2" {
-  value = data.aws_caller_identity.current.account_id
-}
-output "debug3" {
-  value = var.es_domain
-}
+# output "debug1" {
+#   value = data.aws_region.current.name
+# }
+# output "debug2" {
+#   value = data.aws_caller_identity.current.account_id
+# }
+# output "debug3" {
+#   value = var.es_domain
+# }
