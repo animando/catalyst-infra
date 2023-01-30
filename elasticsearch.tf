@@ -16,6 +16,10 @@ resource "aws_elasticsearch_domain" "es_domain" {
     }
   }
 
+  node_to_node_encryption {
+    enabled = true
+  }
+
   tags = {
     Name = "Logs ElasticSearch Domain"
     Project = "Catalyst"
