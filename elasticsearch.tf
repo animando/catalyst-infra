@@ -11,7 +11,7 @@ resource "aws_elasticsearch_domain" "es_domain" {
     internal_user_database_enabled = true
     master_user_options {
       master_user_name = var.es_username
-      master_user_password = var.password
+      master_user_password = var.es_password
     }
   }
 
