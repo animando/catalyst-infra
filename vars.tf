@@ -22,6 +22,11 @@ variable "es_password" {
   type = string
   description = "ES password"
 }
+variable "es_domain" {
+  type = string
+  description = "ES domain"
+  default = "os-domain"
+}
 
 locals {
   top_level_domain = "catalyst-${var.environment}"

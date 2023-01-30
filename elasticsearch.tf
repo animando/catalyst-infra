@@ -1,5 +1,5 @@
 resource "aws_opensearch_domain" "os_domain" {
-  domain_name           = "os-domain"
+  domain_name           = var.es_domain
 
   engine_version = "OpenSearch_2.3"
 
@@ -11,11 +11,26 @@ resource "aws_opensearch_domain" "os_domain" {
   advanced_security_options {
     enabled = true
     internal_user_database_enabled = true
+
     master_user_options {
       master_user_name = var.es_username
       master_user_password = var.es_password
     }
   }
+
+  access_policies = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "es:*",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Resource": "arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${var.es_domain}/*"
+    }
+  ]
+}
+POLICY
 
   node_to_node_encryption {
     enabled = true
