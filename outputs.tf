@@ -90,21 +90,21 @@ output "cognito_ui_endpoint" {
 
 # Elastic Search
 
-output "es_endpoint" {
-  value = aws_elasticsearch_domain.es_domain.endpoint
-}
+# output "es_endpoint" {
+#   value = aws_elasticsearch_domain.es_domain.endpoint
+# }
 
-output "es_domain_name" {
-  value = aws_elasticsearch_domain.es_domain.domain_name
-}
+# output "es_domain_name" {
+#   value = aws_elasticsearch_domain.es_domain.domain_name
+# }
 
-output "es_domain_id" {
-  value = aws_elasticsearch_domain.es_domain.domain_id
-}
+# output "es_domain_id" {
+#   value = aws_elasticsearch_domain.es_domain.domain_id
+# }
 
-output "es_arn" {
-  value = aws_elasticsearch_domain.es_domain.arn
-}
-output "es_kibana_endpoint" {
-  value = aws_elasticsearch_domain.es_domain.kibana_endpoint
-}
+# output "es_arn" {
+#   value = aws_elasticsearch_domain.es_domain.arn
+# }
+# output "es_kibana_endpoint" {
+#   value = aws_elasticsearch_domain.es_domain.kibana_endpoint
+# }
