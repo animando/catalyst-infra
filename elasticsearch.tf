@@ -29,6 +29,13 @@ resource "aws_elasticsearch_domain" "es_domain" {
     tls_security_policy = "Policy-Min-TLS-1-0-2019-07"
   }
 
+  ebs_options {
+    ebs_enabled = true
+    volume_size = 10
+    volume_type = "gp3"
+    throughput = 125
+  }
+
   tags = {
     Name = "Logs ElasticSearch Domain"
     Project = "Catalyst"
