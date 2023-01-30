@@ -18,20 +18,6 @@ resource "aws_opensearch_domain" "os_domain" {
     }
   }
 
-  access_policies = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "es:*",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Resource": "arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${var.es_domain}/*"
-    }
-  ]
-}
-POLICY
-
   node_to_node_encryption {
     enabled = true
   }
