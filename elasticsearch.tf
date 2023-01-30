@@ -18,6 +18,7 @@ resource "aws_opensearch_domain" "os_domain" {
     }
   }
 
+
   node_to_node_encryption {
     enabled = true
   }
