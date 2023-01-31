@@ -59,3 +59,38 @@ resource "aws_opensearch_domain_policy" "os_domain_policy" {
 }
 POLICIES
 }
+
+resource "aws_iam_role" "os_log_writing_role" {
+  name = "os_log_writing_role"
+
+  assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "sts:AssumeRole",
+            "Principal": {
+               "Service": "ec2.amazonaws.com"
+            },
+            "Effect": "Allow",
+            "Sid": ""
+        }
+    ]
+}
+EOF
+}
+resource "aws_iam_role_policy" "os_log_writing_policy" {
+  name = "os_log_writing_policy"
+  role = aws_iam_role.os_log_writing_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "es:*"
+        Effect = "Allow"
+        Resource = "arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${var.es_domain}/*"
+      }
+    ]
+  })
+}
