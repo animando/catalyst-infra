@@ -70,10 +70,9 @@ resource "aws_iam_role" "os_log_writing_role" {
         {
             "Action": "sts:AssumeRole",
             "Principal": {
-               "Service": "ec2.amazonaws.com"
+               "Service": "lambda.amazonaws.com"
             },
-            "Effect": "Allow",
-            "Sid": ""
+            "Effect": "Allow"
         }
     ]
 }
@@ -90,13 +89,6 @@ resource "aws_iam_role_policy" "os_log_writing_policy" {
         Action = "es:*"
         Effect = "Allow"
         Resource = "arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${var.es_domain}/*"
-      },
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Principal = {
-            "Service" = "lambda.amazonaws.com"
-        }
       }
     ]
   })
