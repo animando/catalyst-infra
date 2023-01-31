@@ -102,6 +102,10 @@ output "cognito_ui_endpoint" {
 #   value = aws_elasticsearch_domain.es_domain.domain_id
 # }
 
+output "os_log_writing_role_arn" {
+  value = aws_iam_role.os_log_writing_role.arn
+}
+
 # output "es_arn" {
 #   value = aws_elasticsearch_domain.es_domain.arn
 # }
