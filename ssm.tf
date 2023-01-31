@@ -126,3 +126,17 @@ resource "aws_ssm_parameter" "user_pool_client_secret_arn" {
   type = "String"
   value = aws_secretsmanager_secret.cognito_userpool_client_secret.arn
 }
+
+# OpenSearch
+
+resource "aws_ssm_parameter" "os_domain_arn" {
+  name = "os-domain-arn"
+  type = "String"
+  value = aws_opensearch_domain.os_domain.arn
+}
+
+resource "aws_ssm_parameter" "os_logging_role_arn" {
+  name = "os-logging-role-arn"
+  type = "String"
+  value = aws_iam_role.os_log_writing_role.arn
+}
