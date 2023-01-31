@@ -87,38 +87,3 @@ output "cognito_user_pool_arn" {
 output "cognito_ui_endpoint" {
   value = "${aws_cognito_user_pool_domain.user_pool_domain.domain}.auth.${data.aws_region.current.name}.amazoncognito.com"
 }
-
-# Elastic Search
-
-# output "es_endpoint" {
-#   value = aws_elasticsearch_domain.es_domain.endpoint
-# }
-
-# output "es_domain_name" {
-#   value = aws_elasticsearch_domain.es_domain.domain_name
-# }
-
-# output "es_domain_id" {
-#   value = aws_elasticsearch_domain.es_domain.domain_id
-# }
-
-output "os_log_writing_role_arn" {
-  value = aws_iam_role.os_log_writing_role.arn
-}
-
-# output "es_arn" {
-#   value = aws_elasticsearch_domain.es_domain.arn
-# }
-# output "es_kibana_endpoint" {
-#   value = aws_elasticsearch_domain.es_domain.kibana_endpoint
-# }
-
-# output "debug1" {
-#   value = data.aws_region.current.name
-# }
-# output "debug2" {
-#   value = data.aws_caller_identity.current.account_id
-# }
-# output "debug3" {
-#   value = var.es_domain
-# }
