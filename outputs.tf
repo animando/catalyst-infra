@@ -39,10 +39,10 @@ output "cloudfront_distribution_id" {
   value = aws_cloudfront_distribution.ui_cloudfront_distribution.id
 }
 
-# output "vpc_endpoint_id" {
-#   description = "VPC Endpoint id"
-#   value = aws_vpc_endpoint.execute-api_vpc_endpoint.id
-# }
+output "vpc_endpoint_id" {
+  description = "VPC Endpoint id"
+  value = aws_vpc_endpoint.execute-api_vpc_endpoint.id
+}
 
 # VPC
 
