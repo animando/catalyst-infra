@@ -60,11 +60,11 @@ resource "aws_security_group" "lambda_security_group" {
     cidr_blocks      = [aws_vpc.vpc.cidr_block]
   }
   egress {
-    description      = "SSL egress"
+    description      = "SSL egress to anywhere"
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"
-    cidr_blocks      = [aws_vpc.vpc.cidr_block]
+    cidr_blocks      = ["0.0.0.0/0"]
   }
   ingress {
     description      = "SSL ingress"
@@ -110,7 +110,7 @@ resource "aws_security_group" "allow_vpc_https_traffic" {
     cidr_blocks      = ["0.0.0.0/0"]
   }
   egress {
-    description      = "SSL from anywhere"
+    description      = "SSL to anywhere"
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"
