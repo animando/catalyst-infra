@@ -69,11 +69,11 @@ resource "aws_ssm_parameter" "lambda_security_group_id" {
   value = aws_security_group.lambda_security_group.id
 }
 
-# resource "aws_ssm_parameter" "vpc_endpoint_id" {
-#   name  = "vpc-endpoint-id"
-#   type  = "String"
-#   value = aws_vpc_endpoint.execute-api_vpc_endpoint.id
-# }
+resource "aws_ssm_parameter" "vpc_endpoint_id" {
+  name  = "vpc-endpoint-id"
+  type  = "String"
+  value = aws_vpc_endpoint.execute-api_vpc_endpoint.id
+}
 
 # Cognito
 
