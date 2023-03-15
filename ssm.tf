@@ -39,41 +39,41 @@ resource "aws_ssm_parameter" "kafka_bootstrap_brokers_iam" {
 
 # VPC
 
-resource "aws_ssm_parameter" "private_subnet_az1_id" {
-  name  = "private-subnet-az1-id"
-  type  = "String"
-  value = aws_subnet.subnet_az1.id
-}
+# resource "aws_ssm_parameter" "private_subnet_az1_id" {
+#   name  = "private-subnet-az1-id"
+#   type  = "String"
+#   value = aws_subnet.subnet_az1.id
+# }
 
-resource "aws_ssm_parameter" "private_subnet_az2_id" {
-  name  = "private-subnet-az2-id"
-  type  = "String"
-  value = aws_subnet.subnet_az2.id
-}
+# resource "aws_ssm_parameter" "private_subnet_az2_id" {
+#   name  = "private-subnet-az2-id"
+#   type  = "String"
+#   value = aws_subnet.subnet_az2.id
+# }
 
-resource "aws_ssm_parameter" "private_subnet_az3_id" {
-  name  = "private-subnet-az3-id"
-  type  = "String"
-  value = aws_subnet.subnet_az3.id
-}
+# resource "aws_ssm_parameter" "private_subnet_az3_id" {
+#   name  = "private-subnet-az3-id"
+#   type  = "String"
+#   value = aws_subnet.subnet_az3.id
+# }
 
-resource "aws_ssm_parameter" "public_subnet_az1_id" {
-  name  = "public-subnet-az1-id"
-  type  = "String"
-  value = aws_subnet.public_subnet_az1.id
-}
+# resource "aws_ssm_parameter" "public_subnet_az1_id" {
+#   name  = "public-subnet-az1-id"
+#   type  = "String"
+#   value = aws_subnet.public_subnet_az1.id
+# }
 
-resource "aws_ssm_parameter" "public_subnet_az2_id" {
-  name  = "public-subnet-az2-id"
-  type  = "String"
-  value = aws_subnet.public_subnet_az2.id
-}
+# resource "aws_ssm_parameter" "public_subnet_az2_id" {
+#   name  = "public-subnet-az2-id"
+#   type  = "String"
+#   value = aws_subnet.public_subnet_az2.id
+# }
 
-resource "aws_ssm_parameter" "public_subnet_az3_id" {
-  name  = "public-subnet-az3-id"
-  type  = "String"
-  value = aws_subnet.public_subnet_az3.id
-}
+# resource "aws_ssm_parameter" "public_subnet_az3_id" {
+#   name  = "public-subnet-az3-id"
+#   type  = "String"
+#   value = aws_subnet.public_subnet_az3.id
+# }
 
 resource "aws_ssm_parameter" "msk_security_group_id" {
   name  = "msk-security-group-id"
@@ -87,11 +87,11 @@ resource "aws_ssm_parameter" "lambda_security_group_id" {
   value = aws_security_group.lambda_security_group.id
 }
 
-resource "aws_ssm_parameter" "vpc_endpoint_id" {
-  name  = "execute-api-vpc-endpoint-id"
-  type  = "String"
-  value = aws_vpc_endpoint.execute-api_vpc_endpoint.id
-}
+# resource "aws_ssm_parameter" "vpc_endpoint_id" {
+#   name  = "execute-api-vpc-endpoint-id"
+#   type  = "String"
+#   value = aws_vpc_endpoint.execute-api_vpc_endpoint.id
+# }
 
 # Cognito
 

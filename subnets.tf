@@ -31,16 +31,16 @@ resource "aws_subnet" "subnet_az3" {
   }
 }
 
-resource "aws_subnet" "public_subnet_az1" {
-  availability_zone = data.aws_availability_zones.azs.names[0]
-  cidr_block        = "10.0.11.0/24"
-  vpc_id            = aws_vpc.vpc.id
+# resource "aws_subnet" "public_subnet_az1" {
+#   availability_zone = data.aws_availability_zones.azs.names[0]
+#   cidr_block        = "10.0.11.0/24"
+#   vpc_id            = aws_vpc.vpc.id
 
-  tags = {
-    Name = "Public Subnet AZ1"
-    Project = "Catalyst"
-  }
-}
+#   tags = {
+#     Name = "Public Subnet AZ1"
+#     Project = "Catalyst"
+#   }
+# }
 
 # resource "aws_subnet" "public_subnet_az2" {
 #   availability_zone = data.aws_availability_zones.azs.names[1]
