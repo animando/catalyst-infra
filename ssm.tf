@@ -88,7 +88,7 @@ resource "aws_ssm_parameter" "lambda_security_group_id" {
 }
 
 resource "aws_ssm_parameter" "vpc_endpoint_id" {
-  name  = "vpc-endpoint-id"
+  name  = "execute-api-vpc-endpoint-id"
   type  = "String"
   value = aws_vpc_endpoint.execute-api_vpc_endpoint.id
 }

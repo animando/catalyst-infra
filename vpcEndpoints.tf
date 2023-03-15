@@ -44,20 +44,20 @@
 #   }
 # }
 
-# resource "aws_vpc_endpoint" "dynamodb_vpc_endpoint" {
-#   vpc_id = aws_vpc.vpc.id
-#   vpc_endpoint_type = "Gateway"
-#   service_name = "com.amazonaws.eu-west-2.dynamodb"
+resource "aws_vpc_endpoint" "dynamodb_vpc_endpoint" {
+  vpc_id = aws_vpc.vpc.id
+  vpc_endpoint_type = "Gateway"
+  service_name = "com.amazonaws.eu-west-2.dynamodb"
 
-#   route_table_ids = [
-#     aws_vpc.vpc.default_route_table_id
-#   ]
+  route_table_ids = [
+    aws_vpc.vpc.default_route_table_id
+  ]
 
-#   tags = {
-#     Name = "DynamoDb VPC Endpoint"
-#     Project = "Catalyst"
-#   }
-# }
+  tags = {
+    Name = "DynamoDb VPC Endpoint"
+    Project = "Catalyst"
+  }
+}
 
 # resource "aws_vpc_endpoint" "sts_vpc_endpoint" {
 #   vpc_id = aws_vpc.vpc.id
