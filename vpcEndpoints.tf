@@ -97,7 +97,7 @@ resource "aws_vpc_endpoint" "execute-api_vpc_endpoint" {
     aws_security_group.allow_vpc_https_traffic.id
   ]
 
-  private_dns_enabled = false
+  private_dns_enabled = true
 
   tags = {
     Name = "Execute API VPC Endpoint"
