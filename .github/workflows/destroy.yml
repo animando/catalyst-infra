@@ -20,4 +20,4 @@ jobs:
         run: terraform init
 
       - name: Destroy
-        run: terraform destroy -auto-approve -var environment=dev -var google-app-id=${GOOGLE_IDP_APP_ID} -var google-app-secret=${GOOGLE_IDP_APP_SECRET} -var es_username=${ES_USERNAME} -var es_password=${ES_PASSWORD}
+        run: terraform destroy -auto-approve -var environment=dev -var google_idp_app_id=${GOOGLE_IDP_APP_ID} -var google_idp_app_secret=${GOOGLE_IDP_APP_SECRET} -var es_username=${ES_USERNAME} -var es_password=${ES_PASSWORD}
