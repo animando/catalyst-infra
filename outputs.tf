@@ -65,6 +65,10 @@
 #   value = aws_security_group.lambda_security_group.id
 # }
 
+output "vpc_endpoint_private_dns" {
+  value = aws_vpc_endpoint.execute-api_vpc_endpoint.dns_entry[0].dns_name
+}
+
 # Cognito
 
 # output "cognito_user_pool_client_id" {
