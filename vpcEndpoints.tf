@@ -82,28 +82,26 @@
 #   }
 # }
 
-# resource "aws_vpc_endpoint" "execute-api_vpc_endpoint" {
-#   vpc_id = aws_vpc.vpc.id
-#   service_name = "com.amazonaws.eu-west-2.execute-api"
-#   vpc_endpoint_type = "Interface"
+resource "aws_vpc_endpoint" "execute-api_vpc_endpoint" {
+  vpc_id = aws_vpc.vpc.id
+  service_name = "com.amazonaws.eu-west-2.execute-api"
+  vpc_endpoint_type = "Interface"
 
-#   subnet_ids = [
-#     aws_subnet.subnet_az1.id,
-#     aws_subnet.subnet_az2.id,
-#     aws_subnet.subnet_az3.id
-#   ]
+  subnet_ids = [
+    aws_subnet.subnet_az1.id
+  ]
 
-#   security_group_ids = [
-#     aws_security_group.allow_vpc_https_traffic.id
-#   ]
+  security_group_ids = [
+    aws_security_group.allow_vpc_https_traffic.id
+  ]
 
-#   private_dns_enabled = true
+  private_dns_enabled = true
 
-#   tags = {
-#     Name = "Execute API VPC Endpoint"
-#     Project = "Catalyst"
-#   }
-# }
+  tags = {
+    Name = "Execute API VPC Endpoint"
+    Project = "Catalyst"
+  }
+}
 
 # resource "aws_vpc_endpoint" "secretsmanager_vpc_endpoint" {
 #   vpc_id = aws_vpc.vpc.id
